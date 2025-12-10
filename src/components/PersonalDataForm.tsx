@@ -216,8 +216,8 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
   }
 
   return (
-<div className="w-full max-w-2xl mx-auto p-8 rounded-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <h2 className="text-2xl font-semibold mb-6 text-center" style={{color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif'}}>{reviewMode ? t.reviewTitle : t.title}</h2>
+<div className="w-full max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 rounded-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 text-center" style={{color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif'}}>{reviewMode ? t.reviewTitle : t.title}</h2>
       {!showContract && !reviewMode ? (
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>

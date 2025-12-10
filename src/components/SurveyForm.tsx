@@ -66,25 +66,25 @@ export default function SurveyForm({ survey, respondentId }: SurveyFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">{lang === 'sk' ? 'Dotazník MedInsights 2025' : 'MedInsights 2025 Questionnaire'}</h2>
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 bg-white rounded shadow">
+      <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{lang === 'sk' ? 'Dotazník MedInsights 2025' : 'MedInsights 2025 Questionnaire'}</h2>
       {survey.questions.map(q => (
-        <div key={q.id} className="mb-6">
-          <label className="block font-semibold mb-2">{String(q.question_text[lang as keyof typeof q.question_text])}</label>
+        <div key={q.id} className="mb-4 sm:mb-6">
+          <label className="block font-semibold mb-2 text-sm sm:text-base" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{String(q.question_text[lang as keyof typeof q.question_text])}</label>
           {q.type === 'likert_1_7' && (
-            <div className="flex gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-7 gap-2">
               {[...Array(7)].map((_, i) => (
-                <label key={i} className="flex flex-col items-center">
-                  <input type="radio" name={q.id} value={i + 1} onChange={() => handleChange(q.id, i + 1)} />
-                  <span className="text-xs">{(q.scale?.labels as any)?.[lang]?.[String(i + 1)] || i + 1}</span>
+                <label key={i} className="flex flex-col items-center p-2 border rounded hover:bg-gray-50" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                  <input type="radio" name={q.id} value={i + 1} onChange={() => handleChange(q.id, i + 1)} className="mb-1" />
+                  <span className="text-xs text-center">{(q.scale?.labels as any)?.[lang]?.[String(i + 1)] || i + 1}</span>
                 </label>
               ))}
             </div>
           )}
           {q.type === 'Áno_Nie_Neviem' && (
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               {q.options?.map(opt => (
-                <label key={opt.value} className="flex items-center gap-1">
+                <label key={opt.value} className="flex items-center gap-2 p-2 border rounded hover:bg-gray-50 cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
                   <input type="radio" name={q.id} value={opt.value} onChange={() => handleChange(q.id, opt.value)} />
                   {(opt.label as any)[lang]}
                 </label>
@@ -101,11 +101,35 @@ export default function SurveyForm({ survey, respondentId }: SurveyFormProps) {
             </div>
           )}
           {q.type === 'open_text' && (
-            <textarea minLength={q.constraints?.min_characters || 5} onChange={e => handleChange(q.id, e.target.value)} className="w-full p-2 border rounded" />
+            <textarea 
+              minLength={q.constraints?.min_characters || 5} 
+              onChange={e => handleChange(q.id, e.target.value)} 
+              className="w-full p-3 border rounded-lg transition-colors" 
+              style={{ 
+                border: '1px solid #d1d5db', 
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                minHeight: '100px',
+                resize: 'vertical'
+              }}
+              onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'}
+              onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'}
+            />
           )}
         </div>
       ))}
-      <button type="submit" className="px-4 py-2 bg-green-600 text-white font-bold rounded hover:bg-green-700 transition">{lang === 'sk' ? 'Poslať prieskum' : 'Submit survey'}</button>
+      <button 
+        type="submit" 
+        className="w-full sm:w-auto px-6 py-3 font-bold rounded-lg transition-all duration-200" 
+        style={{ 
+          backgroundColor: '#16a34a', 
+          color: '#ffffff', 
+          fontFamily: 'Helvetica, Arial, sans-serif' 
+        }}
+        onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
+        onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+      >
+        {lang === 'sk' ? 'Poslať prieskum' : 'Submit survey'}
+      </button>
     </form>
   );
 }

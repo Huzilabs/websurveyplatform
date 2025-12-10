@@ -6,19 +6,19 @@ import Footer from "../../components/Footer";
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col justify-between" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #e6f7ff 50%, #ffffff 100%)', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="flex flex-col items-center justify-center flex-1 px-4">
-        <div className="text-center mb-8">
-          <img src="/logo.png" alt="MedInsights Logo" className="mx-auto mb-6" style={{ maxWidth: 250, filter: 'drop-shadow(0 10px 20px rgba(0, 151, 178, 0.2))' }} />
-          <div className="w-24 h-1 mx-auto rounded-full" style={{ backgroundColor: '#0097b2' }}></div>
+      <div className="flex flex-col items-center justify-center flex-1 px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <img src="/logo.png" alt="MedInsights Logo" className=" mb-4 sm:mb-6" style={{ maxWidth: '200px', width: '100%', height: 'auto', filter: 'drop-shadow(0 10px 20px rgba(0, 151, 178, 0.2))' }} />
+          <div className="w-16 sm:w-24 h-1 mx-auto rounded-full" style={{ backgroundColor: '#0097b2' }}></div>
         </div>
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif', textShadow: '0 2px 4px rgba(0, 151, 178, 0.1)' }}>Vitajte v prieskume MedInsights 2025!</h1>
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif', textShadow: '0 2px 4px rgba(0, 151, 178, 0.1)' }}>Vitajte v prieskume MedInsights 2025!</h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div className="p-6 rounded-xl" style={{ backgroundColor: '#ffffff', border: '1px solid #0097b2', boxShadow: '0 10px 25px rgba(0, 151, 178, 0.1)' }}>
               <h2 className="text-xl font-bold mb-4 flex items-center" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
                 <span className="mr-3 text-2xl">✨</span> Prečo sa zapojiť
               </h2>
-              <ul className="space-y-3 text-left" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              <ul className="space-y-2 sm:space-y-3 text-left text-sm sm:text-base" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
                 <li className="flex items-start">
                   <span className="mr-3 mt-1 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#0097b2' }}></span>
                   <span>Vaše názory majú reálny dopad na tvorbu edukácie pre lekárov aj pacientov</span>
@@ -41,29 +41,29 @@ export default function LandingPage() {
                 </li>
               </ul>
             </div>
-            <div className="p-6 rounded-xl" style={{ backgroundColor: '#ffffff', border: '1px solid #0097b2', boxShadow: '0 10px 25px rgba(0, 151, 178, 0.1)' }}>
-              <h2 className="text-xl font-bold mb-4 flex items-center" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <span className="mr-3 text-2xl">🚀</span> Ako sa zapojiť
+            <div className="p-4 sm:p-6 rounded-xl" style={{ backgroundColor: '#ffffff', border: '1px solid #0097b2', boxShadow: '0 10px 25px rgba(0, 151, 178, 0.1)' }}>
+              <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                <span className="mr-3 text-xl sm:text-2xl">🚀</span> Ako sa zapojiť
               </h2>
-              <div className="space-y-4 text-left" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="flex items-center p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 text-white font-bold" style={{ backgroundColor: '#0097b2' }}>1</div>
+              <div className="space-y-3 sm:space-y-4 text-left text-sm sm:text-base" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                <div className="flex items-center p-2 sm:p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
+                  <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full flex items-center justify-center mr-3 sm:mr-4 text-white font-bold text-sm sm:text-base" style={{ backgroundColor: '#0097b2' }}>1</div>
                   <span>Vyplňte osobné údaje</span>
                 </div>
-                <div className="flex items-center p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 text-white font-bold" style={{ backgroundColor: '#0097b2' }}>2</div>
+                <div className="flex items-center p-2 sm:p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
+                  <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full flex items-center justify-center mr-3 sm:mr-4 text-white font-bold text-sm sm:text-base" style={{ backgroundColor: '#0097b2' }}>2</div>
                   <span>Elektronicky potvrďte zmluvu</span>
                 </div>
-                <div className="flex items-center p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-4 text-white font-bold" style={{ backgroundColor: '#0097b2' }}>3</div>
+                <div className="flex items-center p-2 sm:p-3 rounded-lg" style={{ backgroundColor: '#e6f7ff' }}>
+                  <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full flex items-center justify-center mr-3 sm:mr-4 text-white font-bold text-sm sm:text-base" style={{ backgroundColor: '#0097b2' }}>3</div>
                   <span>Vyplňte dotazník</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <Link href="/personal-data">
-              <button className="px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105" style={{ 
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105" style={{ 
                 backgroundColor: '#16a34a', 
                 color: '#ffffff', 
                 fontFamily: 'Helvetica, Arial, sans-serif',

@@ -263,7 +263,7 @@ export default function QuestionnairePage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 mt-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
+    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 mt-4 sm:mt-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', maxWidth: '100%', overflowX: 'hidden' }}>
       {!isLoaded || checkingAccess ? (
         <div className="text-center py-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>Načítavam...</div>
       ) : missingData ? (
@@ -278,7 +278,7 @@ export default function QuestionnairePage() {
             <div style={{ color: '#000000' }}><b>Meno:</b> {respondent?.name}</div>
             <div style={{ color: '#000000' }}><b>Email:</b> {respondent?.email}</div>
           </div>
-          <h1 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>MedInsights 2025 Questionnaire</h1>
+          <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>MedInsights 2025 Questionnaire</h1>
           <div className="mb-6 p-4 rounded" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2' }}>
             <p className="mb-3" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}><strong>Inštrukcie:</strong> Dotazník obsahuje {totalQuestions} otázok rozdelených do {questionnaire.length} sekcií. Vaše odpovede sa automaticky ukladajú každých 15 sekúnd.</p>
             <div className="mb-2">
@@ -317,9 +317,9 @@ export default function QuestionnairePage() {
                     {q.text}
                   </label>
                   {q.type === "single" && Array.isArray(q.options) ? (
-                    <div className="flex gap-4 flex-wrap">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 flex-wrap">
                       {q.options.map((opt: string, idx: number) => (
-                        <label key={opt} className="flex items-center gap-1">
+                        <label key={opt} className="flex items-center gap-2 text-sm sm:text-base p-2 sm:p-0">
                           <input
                             type="radio"
                             name={q.id}
@@ -327,16 +327,17 @@ export default function QuestionnairePage() {
                             checked={answers[q.id] === opt}
                             onChange={() => handleChange(q.id, opt)}
                             disabled={submitted}
+                            className="min-w-4 min-h-4"
                           />
-                          {opt}
+                          <span className="break-words">{opt}</span>
                         </label>
                       ))}
                     </div>
                   ) : q.type === "multi_other" && Array.isArray(q.options) ? (
                     <>
-                      <div className="flex gap-4 flex-wrap mb-2">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 flex-wrap mb-2">
                         {q.options.map((opt: string, idx: number) => (
-                          <label key={opt} className="flex items-center gap-1">
+                          <label key={opt} className="flex items-center gap-2 text-sm sm:text-base p-2 sm:p-0">
                             <input
                               type="checkbox"
                               name={q.id}
@@ -351,19 +352,21 @@ export default function QuestionnairePage() {
                                 }
                               }}
                               disabled={submitted}
+                              className="min-w-4 min-h-4"
                             />
-                            {opt}
+                            <span className="break-words">{opt}</span>
                           </label>
                         ))}
                       </div>
                       {Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes("Iné") && (
                         <textarea
-                          className="w-full border rounded p-2 mt-2"
+                          className="w-full border rounded p-2 sm:p-3 mt-2 text-sm sm:text-base"
                           rows={2}
                           placeholder="Prosím špecifikujte..."
                           value={answers[`${q.id}_other`] || ""}
                           onChange={(e) => handleChange(`${q.id}_other`, e.target.value)}
                           disabled={submitted}
+                          style={{ minHeight: '44px', resize: 'vertical' }}
                         />
                       )}
                     </>
@@ -386,11 +389,12 @@ export default function QuestionnairePage() {
                       </div>
                       {answers[q.id] === "Iné" && (
                         <textarea
-                          className="w-full border rounded p-2"
-                          rows={2}
-                          value={answers[`${q.id}_other`] || ""}
-                          onChange={(e) => handleChange(`${q.id}_other`, e.target.value)}
+                          className="w-full border rounded p-2 sm:p-3 text-sm sm:text-base"
+                          rows={3}
+                          value={answers[q.id] || ""}
+                          onChange={(e) => handleChange(q.id, e.target.value)}
                           disabled={submitted}
+                          style={{ minHeight: '44px', resize: 'vertical' }}
                         />
                       )}
                     </>
@@ -435,8 +439,8 @@ export default function QuestionnairePage() {
                     </div>
                   ) : (
                     <textarea
-                      className="w-full rounded p-2"
-                      style={{ border: '1px solid #0097b2', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}
+                      className="w-full rounded p-2 sm:p-3 text-sm sm:text-base"
+                      style={{ border: '1px solid #0097b2', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', minHeight: '44px', resize: 'vertical' }}
                       rows={3}
                       value={answers[q.id] || ""}
                       onChange={(e) => handleChange(q.id, e.target.value)}
@@ -461,12 +465,13 @@ export default function QuestionnairePage() {
             </div>
           </div>
           <button
-            className="w-full py-3 px-6 rounded-lg font-semibold text-lg transition-all"
+            className="w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-base sm:text-lg transition-all"
             style={{
               backgroundColor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? '#16a34a' : '#d1d5db',
               color: answeredQuestions >= totalQuestions * 0.5 && !submitted ? '#ffffff' : '#6b7280',
               fontFamily: 'Helvetica, Arial, sans-serif',
-              cursor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? 'pointer' : 'not-allowed'
+              cursor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? 'pointer' : 'not-allowed',
+              minHeight: '44px'
             }}
             onMouseEnter={(e) => {
               if (answeredQuestions >= totalQuestions * 0.5 && !submitted) {

@@ -74,6 +74,14 @@ export default function AdminDashboard() {
   const [selectedContract, setSelectedContract] = useState<ContractData | null>(null);
   const [view, setView] = useState<'list' | 'detail'>('list');
 
+  // Check for existing authentication on component mount
+  useEffect(() => {
+    const savedAuth = localStorage.getItem('adminAuth');
+    if (savedAuth === 'authenticated') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   useEffect(() => {
     async function fetchContracts() {
       setLoading(true);
@@ -98,7 +106,7 @@ export default function AdminDashboard() {
     
     if (loginForm.email === 'MedInsights@admin.com' && loginForm.password === 'medinsights1221') {
       setIsAuthenticated(true);
-      sessionStorage.setItem('adminAuth', 'authenticated');
+      localStorage.setItem('adminAuth', 'authenticated');
     } else {
       setLoginError('Nesprávny email alebo heslo');
     }
@@ -106,7 +114,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    sessionStorage.removeItem('adminAuth');
+    localStorage.removeItem('adminAuth');
     setLoginForm({ email: '', password: '' });
   };
 
@@ -261,9 +269,9 @@ export default function AdminDashboard() {
   // Show login form if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#f8fafc' }}>
-        <div className="w-full max-w-md p-8 rounded-lg shadow-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
-          <h1 className="text-2xl font-semibold text-center mb-6" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Admin Prihlásenie</h1>
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#f8fafc' }}>
+        <div className="w-full max-w-md p-6 sm:p-8 rounded-lg shadow-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+          <h1 className="text-xl sm:text-2xl font-semibold text-center mb-6" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Admin Prihlásenie</h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</label>
@@ -309,10 +317,10 @@ export default function AdminDashboard() {
 
   if (view === 'detail' && selectedContract) {
     return (
-      <div className="max-w-6xl mx-auto p-6" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Detail respondenta: {selectedContract.name}</h2>
-          <div className="flex gap-3">
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Detail respondenta: {selectedContract.name}</h2>
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setView('list')}
               className="px-4 py-2 rounded"
@@ -566,10 +574,31 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>Admin Dashboard - MedInsights 2025</h2>
-        
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>Admin Dashboard - MedInsights 2025</h2>
+        <button
+          onClick={handleLogout}
+          className="px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base"
+          style={{
+            backgroundColor: '#ef4444',
+            color: '#ffffff',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)'
+          }}
+          onMouseEnter={(e) => {
+            (e.target as HTMLElement).style.backgroundColor = '#dc2626';
+            (e.target as HTMLElement).style.transform = 'translateY(-1px)';
+            (e.target as HTMLElement).style.boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            (e.target as HTMLElement).style.backgroundColor = '#ef4444';
+            (e.target as HTMLElement).style.transform = 'translateY(0)';
+            (e.target as HTMLElement).style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+          }}
+        >
+          Odhlásiť sa
+        </button>
       </div>
       
       {loading ? (
@@ -581,47 +610,97 @@ export default function AdminDashboard() {
           <div className="mb-4 text-sm" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
             Počet záznamov: {contracts.length}
           </div>
-          <div className="overflow-x-auto">
-          <table className="w-full border-collapse shadow-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            <thead>
-              <tr style={{ backgroundColor: '#f8fafc' }}>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Meno</th>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</th>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Vytvorené</th>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Zmluva</th>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Dotazník</th>
-                <th className="px-4 py-3 text-left font-semibold" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Akcie</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contracts.map((contract) => (
-                <tr key={contract.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.name}</td>
-                  <td className="px-4 py-2" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.email}</td>
-                  <td className="px-4 py-2 text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                    {formatDate(contract.created_at)}
-                  </td>
-                  <td className="px-4 py-2" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          
+          {/* Mobile Card Layout */}
+          <div className="block md:hidden space-y-4">
+            {contracts.map((contract) => (
+              <div key={contract.id} className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <div className="space-y-2">
+                  <h3 className="font-semibold text-lg" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.name}</h3>
+                  <p className="text-sm" style={{ color: '#6b7280', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.email}</p>
+                  <p className="text-xs" style={{ color: '#9ca3af', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                    Vytvorené: {formatDate(contract.created_at)}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-2">
                     <span className="px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.contract_approved ? '#16a34a' : '#d65050ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                      {contract.contract_approved ? 'Schválená' : 'Neschválená'}
+                      Zmluva: {contract.contract_approved ? 'Schválená' : 'Neschválená'}
                     </span>
-                  </td>
-                  <td className="px-4 py-2" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
                     <span className="px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.questionnaire_status === 'submitted' ? '#16a34a' : contract.questionnaire_status === 'in_progress' ? '#eab308' : '#6b7280', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
                       {contract.questionnaire_status === 'submitted' ? 'Odoslaný' : 
                        contract.questionnaire_status === 'in_progress' ? 'V procese' : 
                        'Nezačatý'}
                     </span>
+                  </div>
+                  <div className="flex gap-2 mt-3">
+                    <button
+                      onClick={() => {
+                        setSelectedContract(contract);
+                        setView('detail');
+                      }}
+                      className="flex-1 px-3 py-2 rounded font-medium transition-colors text-sm"
+                      style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
+                      onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
+                      onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+                    >
+                      Detail
+                    </button>
+                    <button
+                      onClick={() => downloadContract(contract)}
+                      className="flex-1 px-3 py-2 rounded font-medium transition-colors text-sm"
+                      style={{ backgroundColor: '#47a569ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
+                      onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
+                      onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+                    >
+                      Zmluva
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table Layout */}
+          <div className="hidden md:block overflow-x-auto">
+          <table className="w-full border-collapse shadow-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f8fafc' }}>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Meno</th>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</th>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Vytvorené</th>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Zmluva</th>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Dotazník</th>
+                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Akcie</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contracts.map((contract) => (
+                <tr key={contract.id} className="hover:bg-gray-50">
+                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.name}</td>
+                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.email}</td>
+                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                    {formatDate(contract.created_at)}
                   </td>
-                  <td className="px-4 py-2" style={{ border: '1px solid #e5e7eb' }}>
-                    <div className="flex gap-2">
+                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                    <span className="px-1 sm:px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.contract_approved ? '#16a34a' : '#d65050ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                      {contract.contract_approved ? 'Schválená' : 'Neschválená'}
+                    </span>
+                  </td>
+                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                    <span className="px-1 sm:px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.questionnaire_status === 'submitted' ? '#16a34a' : contract.questionnaire_status === 'in_progress' ? '#eab308' : '#6b7280', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                      {contract.questionnaire_status === 'submitted' ? 'Odoslaný' : 
+                       contract.questionnaire_status === 'in_progress' ? 'V procese' : 
+                       'Nezačatý'}
+                    </span>
+                  </td>
+                  <td className="px-2 sm:px-4 py-2" style={{ border: '1px solid #e5e7eb' }}>
+                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
                       <button
                         onClick={() => {
                           console.log('Detail button clicked for:', contract.name);
                           setSelectedContract(contract);
                           setView('detail');
                         }}
-                        className="px-3 py-1 rounded text-sm font-medium transition-colors"
+                        className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium transition-colors"
                         style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
                         onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
                         onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
@@ -630,7 +709,7 @@ export default function AdminDashboard() {
                       </button>
                       <button
                         onClick={() => downloadContract(contract)}
-                        className="px-3 py-1 rounded text-sm font-medium transition-colors"
+                        className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium transition-colors"
                         style={{ backgroundColor: '#47a569ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
                         onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
                         onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
@@ -643,13 +722,13 @@ export default function AdminDashboard() {
               ))}
             </tbody>
           </table>
+          </div>
           
           {contracts.length === 0 && (
             <div className="text-center py-8" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
               Žiadne záznamy neboli nájdené.
             </div>
           )}
-          </div>
         </>
       )}
     </div>
