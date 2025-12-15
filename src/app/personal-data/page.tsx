@@ -10,9 +10,8 @@ export default function PersonalDataPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <main className="flex flex-col items-center w-full max-w-2xl p-8">
-        {/* <h1 className="text-2xl font-bold mb-4 text-center" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Fill in your personal details</h1> */}
+    <div className="flex min-h-screen items-center justify-center py-12 sm:py-16" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <main className="flex flex-col items-center w-full max-w-4xl px-4 sm:px-6">
         <PersonalDataForm onSubmit={handleSubmit} />
       </main>
     </div>

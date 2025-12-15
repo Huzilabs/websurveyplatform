@@ -74,18 +74,18 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
     sk: {
       title: 'Vyplňte svoje osobné údaje',
       reviewTitle: 'Skontrolujte svoje údaje',
-      name: 'Meno a priezvisko',
-      street: 'Ulica, číslo domu',
-      city: 'PSČ, mesto',
-      email: 'E-mailová adresa',
-      bank: 'Bankové spojenie (Názov banky)',
-      iban: 'IBAN',
-      taxId: 'DIČ alebo rodné číslo',
-      submit: 'Vygenerovať návrh zmluvy o dielo',
+      name: 'Meno a priezvisko:',
+      street: 'Ulica, č. d.:',
+      city: 'PSČ, mesto:',
+      email: 'Email:',
+      bank: 'Bankové spojenie (Názov banky):',
+      iban: 'IBAN:',
+      taxId: 'DIČ alebo rodné číslo:',
+      submit: 'Vygenero-vať návrh zmluvy o dielo',
       contractTitle: 'Návrh zmluvy',
-      contractText: 'Zaškrtnutím políčka nižšie potvrdzujem, že vyššie uvedené údaje sú správne a súhlasím s podmienkami zmluvy.',
-      agree: 'Súhlasím',
-      submitFinal: 'Odoslať a pokračovať',
+      contractText: 'Zaškrtnutím tohto políčka prehlasujem, že som si zmluvu riadne prečítal/a a súhlasi s hore uvedenými zmluvnými podmienkami.',
+      agree: 'Súhlasi ',
+      submitFinal: 'Odeslať a pokračovať',
     },
   };
   const t = translations[lang] || translations.en;
@@ -216,38 +216,38 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
   }
 
   return (
-<div className="w-full max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 rounded-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 text-center" style={{color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif'}}>{reviewMode ? t.reviewTitle : t.title}</h2>
+<div className="w-full max-w-3xl mx-auto p-6 sm:p-8 lg:p-12" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center" style={{color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '-0.02em'}}>{reviewMode ? t.reviewTitle : t.title}</h2>
       {!showContract && !reviewMode ? (
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <input name="name" value={form.name} onChange={handleChange} placeholder={t.name} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="name" value={form.name} onChange={handleChange} placeholder={t.name} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
           <div>
-            <input name="street" value={form.street} onChange={handleChange} placeholder={t.street} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="street" value={form.street} onChange={handleChange} placeholder={t.street} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
           <div>
-            <input name="city" value={form.city} onChange={handleChange} placeholder={t.city} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="city" value={form.city} onChange={handleChange} placeholder={t.city} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
           <div>
-            <input name="email" type="email" value={form.email} onChange={handleChange} placeholder={t.email} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: emailError ? '1px solid #ef4444' : '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = emailError ? '#ef4444' : '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = emailError ? '#ef4444' : '#d1d5db'} />
-            {emailError && <p className="mt-1 text-sm" style={{ color: '#ef4444', fontFamily: 'Helvetica, Arial, sans-serif' }}>{emailError}</p>}
+            <input name="email" type="email" value={form.email} onChange={handleChange} placeholder={t.email} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: emailError ? '1px solid #ef4444' : '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = emailError ? '#ef4444' : '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = emailError ? '#ef4444' : '#e0e0e0'} />
+            {emailError && <p className="mt-2 text-sm" style={{ color: '#ef4444', fontFamily: 'Helvetica, Arial, sans-serif' }}>{emailError}</p>}
           </div>
           <div>
-            <input name="bank" value={form.bank} onChange={handleChange} placeholder={t.bank} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="bank" value={form.bank} onChange={handleChange} placeholder={t.bank} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
           <div>
-            <input name="iban" value={form.iban} onChange={handleChange} placeholder={t.iban} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="iban" value={form.iban} onChange={handleChange} placeholder={t.iban} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
           <div>
-            <input name="taxId" value={form.taxId} onChange={handleChange} placeholder={t.taxId} required className="block w-full p-3 rounded-lg transition-colors" style={{ border: '1px solid #d1d5db', backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }} onFocus={(e) => (e.target as HTMLElement).style.borderColor = '#16a34a'} onBlur={(e) => (e.target as HTMLElement).style.borderColor = '#d1d5db'} />
+            <input name="taxId" value={form.taxId} onChange={handleChange} placeholder={t.taxId} required className="block w-full p-4 transition-all duration-300" style={{ border: 'none', borderBottom: '1px solid #e0e0e0', backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', outline: 'none' }} onFocus={(e) => (e.target as HTMLElement).style.borderBottomColor = '#000000'} onBlur={(e) => (e.target as HTMLElement).style.borderBottomColor = '#e0e0e0'} />
           </div>
-          <button type="submit" disabled={!!emailError} className="w-full mt-6 px-6 py-3 font-semibold rounded-lg transition-all duration-200" style={{ backgroundColor: emailError ? '#d1d5db' : '#16a34a', color: emailError ? '#6b7280' : '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', cursor: emailError ? 'not-allowed' : 'pointer' }} onMouseEnter={(e) => !emailError && ((e.target as HTMLElement).style.backgroundColor = '#15803d')} onMouseLeave={(e) => !emailError && ((e.target as HTMLElement).style.backgroundColor = '#16a34a')}>{t.submit}</button>
+          <button type="submit" disabled={!!emailError} className="w-full mt-10 px-8 py-4 font-medium transition-all duration-300" style={{ backgroundColor: emailError ? '#f5f5f5' : 'transparent', color: emailError ? '#999999' : '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', cursor: emailError ? 'not-allowed' : 'pointer', border: '2px solid #000000', letterSpacing: '0.05em', borderRadius: '50px' }} onMouseEnter={(e) => !emailError && ((e.target as HTMLElement).style.backgroundColor = '#000000', (e.target as HTMLElement).style.color = '#ffffff')} onMouseLeave={(e) => !emailError && ((e.target as HTMLElement).style.backgroundColor = 'transparent', (e.target as HTMLElement).style.color = '#000000')}>{t.submit}</button>
         </form>
       ) : reviewMode ? (
-        <div className="space-y-4">
-          <div className="rounded p-4" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            <h3 className="font-semibold mb-2" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>Review your details</h3>
+        <div className="space-y-8">
+          <div className="p-8" style={{ backgroundColor: '#fafafa', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <h3 className="text-lg font-semibold mb-6" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Skontrolujte svoje údaje</h3>
             <p>
               <span className="font-semibold">{t.name}:</span> {form.name}<br />
               <span className="font-semibold">{t.street}:</span> {form.street}<br />
@@ -259,34 +259,38 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
             </p>
             <p className="mt-4" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Zaškrtnutím políčka nižšie potvrdzujem, že vyššie uvedené údaje sú správne a súhlasim s podmienkami zmluvy.</p>
           </div>
-          <div className="flex items-center">
-            <input id="agree" type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mr-2" style={{ accentColor: '#0097b2' }} />
-            <label htmlFor="agree" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              Súhlasím - <a href="/gdpr" style={{ color: '#0097b2', textDecoration: 'underline', fontFamily: 'Helvetica, Arial, sans-serif' }}>Ochrana osobných údajov</a>
+          <div className="flex items-start py-6">
+            <input id="agree" type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mr-3 mt-1" style={{ accentColor: '#000000', width: '18px', height: '18px' }} />
+            <label htmlFor="agree" className="text-sm leading-relaxed" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              Zaškrtnutím tohto políčka prehlasujem, že som si zmluvu riadne prečítal/a a súhlasím s hore uvedenými zmluvnými podmienkami.
             </label>
           </div>
           <button
             onClick={handleApprove}
             disabled={!agreed || loading || submissionInProgress}
-            className="w-full py-2 rounded font-semibold transition"
+            className="w-full py-4 font-medium transition-all duration-300"
             style={{
-              backgroundColor: agreed && !loading && !submissionInProgress ? '#16a34a' : '#d1d5db',
-              color: agreed && !loading && !submissionInProgress ? '#ffffff' : '#6b7280',
+              backgroundColor: agreed && !loading && !submissionInProgress ? '#000000' : '#f5f5f5',
+              color: agreed && !loading && !submissionInProgress ? '#ffffff' : '#999999',
               fontFamily: 'Helvetica, Arial, sans-serif',
-              cursor: agreed && !loading && !submissionInProgress ? 'pointer' : 'not-allowed'
+              border: '1px solid #000000',
+              cursor: agreed && !loading && !submissionInProgress ? 'pointer' : 'not-allowed',
+              letterSpacing: '0.05em'
             }}
             onMouseEnter={(e) => {
               if (agreed && !loading && !submissionInProgress) {
-                (e.target as HTMLElement).style.backgroundColor = '#15803d';
+                (e.target as HTMLElement).style.backgroundColor = '#ffffff';
+                (e.target as HTMLElement).style.color = '#000000';
               }
             }}
             onMouseLeave={(e) => {
               if (agreed && !loading && !submissionInProgress) {
-                (e.target as HTMLElement).style.backgroundColor = '#16a34a';
+                (e.target as HTMLElement).style.backgroundColor = '#000000';
+                (e.target as HTMLElement).style.color = '#ffffff';
               }
             }}
           >
-            {loading || submissionInProgress ? "Ukladám..." : "Potvrdiť a pokračovať na zmluvu"}
+            {loading || submissionInProgress ? "UKLADÁM..." : "POKRAČOVAŤ"}
           </button>
         </div>
       ) : null}

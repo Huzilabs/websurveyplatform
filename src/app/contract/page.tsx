@@ -287,73 +287,77 @@ export default function ContractPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 rounded-xl mt-8 mb-16" style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', border: '1px solid #0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="mb-4 p-4 rounded" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2' }}>
-        {/* <div><b>ID zmluvy:</b> {contractId}</div> */}
-        <div style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}><b>Meno:</b> {contractor.name}</div>
-        <div style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}><b>Email:</b> {contractor.email}</div>
+    <div className="max-w-4xl mx-auto px-6 py-16" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <div className="mb-12 p-8" style={{ backgroundColor: '#fafafa' }}>
+        <div className="text-sm mb-2" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}><span className="font-medium">Meno:</span> {contractor.name}</div>
+        <div className="text-sm" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}><span className="font-medium">Email:</span> {contractor.email}</div>
       </div>
-      <h1 className="text-2xl font-bold mb-4" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>Zmluva o dielo</h1>
-      <div className="h-96 overflow-y-scroll whitespace-pre-wrap rounded p-4 text-sm mb-6" style={{ backgroundColor: '#f9fafb', border: '1px solid #0097b2', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', maxHeight: '60vh' }}>
+      <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '-0.02em' }}>Zmluva o dielo</h1>
+      <div className="overflow-y-scroll whitespace-pre-wrap p-8 text-sm mb-12 leading-relaxed" style={{ backgroundColor: '#fafafa', border: '1px solid #e0e0e0', color: '#333333', fontFamily: 'Helvetica, Arial, sans-serif', maxHeight: '60vh' }}>
         {filledContract}
       </div>
-      <div className="mb-4 p-4 rounded" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2' }}>
-        <div className="flex items-center">
+      <div className="mb-8 p-8" style={{ backgroundColor: '#fafafa' }}>
+        <div className="flex items-start">
           <input 
             id="agree-contract" 
             type="checkbox" 
             checked={agreed} 
             onChange={e => setAgreed(e.target.checked)} 
-            className="mr-2" 
-            style={{ accentColor: '#0097b2' }}
+            className="mr-3 mt-1" 
+            style={{ accentColor: '#000000', width: '18px', height: '18px' }}
           />
-          <label htmlFor="agree-contract" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Súhlasim s podmienkami zmluvy a potvrdzujem, že som si ju prečítal a porozumel jej obsahu.
+          <label htmlFor="agree-contract" className="text-sm leading-relaxed" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Zaškrtnutím tohto políčka prehlasujem, že som si zmluvu riadne prečítal/a a súhlasím s hore uvedenými zmluvnými podmienkami.
           </label>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 mt-6">
+      <div className="flex flex-col sm:flex-row gap-4">
         <button
-          className="flex-1 py-2 rounded font-semibold transition cursor-pointer"
-          style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-          onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-          onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+          className="flex-1 py-4 font-medium transition-all duration-300"
+          style={{ backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', border: '2px solid #000000', letterSpacing: '0.05em', borderRadius: '50px' }}
+          onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.color = '#ffffff'; }}
+          onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'transparent'; (e.target as HTMLElement).style.color = '#000000'; }}
           onClick={handleDownload}
           disabled={downloading}
         >
-          {downloading ? "Sťahovanie..." : "Stiahnuť zmluvu"}
+          {downloading ? "SŤAHOVANIE..." : "STIAHNUŤ"}
         </button>
         <button
-          className="flex-1 py-2 rounded font-semibold transition"
+          className="flex-1 py-4 font-medium transition-all duration-300"
           style={{
-            backgroundColor: agreed ? '#16a34a' : '#d1d5db',
-            color: agreed ? '#ffffff' : '#6b7280',
+            backgroundColor: agreed ? 'transparent' : '#f5f5f5',
+            color: agreed ? '#000000' : '#999999',
             fontFamily: 'Helvetica, Arial, sans-serif',
-            cursor: agreed ? 'pointer' : 'not-allowed'
+            border: '2px solid #000000',
+            cursor: agreed ? 'pointer' : 'not-allowed',
+            letterSpacing: '0.05em',
+            borderRadius: '50px'
           }}
           onMouseEnter={(e) => {
             if (agreed) {
-              (e.target as HTMLElement).style.backgroundColor = '#15803d';
+              (e.target as HTMLElement).style.backgroundColor = '#000000';
+              (e.target as HTMLElement).style.color = '#ffffff';
             }
           }}
           onMouseLeave={(e) => {
             if (agreed) {
-              (e.target as HTMLElement).style.backgroundColor = '#16a34a';
+              (e.target as HTMLElement).style.backgroundColor = 'transparent';
+              (e.target as HTMLElement).style.color = '#000000';
             }
           }}
           onClick={handleApproveContract}
           disabled={!agreed}
         >
-          Schváliť zmluvu
+          SCHVÁLIŤ
         </button>
         <button
-          className="flex-1 py-2 rounded font-semibold transition cursor-pointer"
-          style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-          onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-          onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+          className="flex-1 py-4 font-medium transition-all duration-300"
+          style={{ backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', border: '2px solid #000000', letterSpacing: '0.05em', borderRadius: '50px' }}
+          onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.color = '#ffffff'; }}
+          onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'transparent'; (e.target as HTMLElement).style.color = '#000000'; }}
           onClick={handleGoToSurvey}
         >
-          Prejsť do prieskumu
+          PREJSŤ DO PRIESKUMU
         </button>
       </div>
     </div>

@@ -269,30 +269,30 @@ export default function AdminDashboard() {
   // Show login form if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#f8fafc' }}>
-        <div className="w-full max-w-md p-6 sm:p-8 rounded-lg shadow-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
-          <h1 className="text-xl sm:text-2xl font-semibold text-center mb-6" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Admin Prihlásenie</h1>
-          <form onSubmit={handleLogin} className="space-y-4">
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#fbfbfc' }}>
+        <div className="w-full max-w-md p-8 rounded-2xl shadow-xl" style={{ backgroundColor: '#ffffff', border: 'none' }}>
+          <h1 className="text-2xl sm:text-3xl font-light text-center mb-6" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Admin Prihlásenie</h1>
+          <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</label>
+              <label className="block text-sm font-medium mb-2" style={{ color: '#334155', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</label>
               <input
                 type="email"
                 value={loginForm.email}
                 onChange={(e) => setLoginForm({...loginForm, email: e.target.value})}
-                className="w-full p-3 rounded-lg border transition-colors"
-                style={{ border: '1px solid #d1d5db', fontFamily: 'Helvetica, Arial, sans-serif' }}
+                className="w-full p-3 bg-transparent border-b transition-colors focus:outline-none"
+                style={{ borderBottom: '2px solid #e6e9ee', fontFamily: 'Helvetica, Arial, sans-serif' }}
                 placeholder="Enter Admin Email"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Heslo</label>
+              <label className="block text-sm font-medium mb-2" style={{ color: '#334155', fontFamily: 'Helvetica, Arial, sans-serif' }}>Heslo</label>
               <input
                 type="password"
                 value={loginForm.password}
                 onChange={(e) => setLoginForm({...loginForm, password: e.target.value})}
-                className="w-full p-3 rounded-lg border transition-colors"
-                style={{ border: '1px solid #d1d5db', fontFamily: 'Helvetica, Arial, sans-serif' }}
+                className="w-full p-3 bg-transparent border-b transition-colors focus:outline-none"
+                style={{ borderBottom: '2px solid #e6e9ee', fontFamily: 'Helvetica, Arial, sans-serif' }}
                 placeholder="••••••••••••"
                 required
               />
@@ -302,10 +302,10 @@ export default function AdminDashboard() {
             )}
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded-lg font-semibold transition-colors"
-              style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+              className="w-full py-3 px-4 font-semibold transition-all duration-300"
+              style={{ backgroundColor: '#000000', color: '#ffffff', borderRadius: '50px', fontFamily: 'Helvetica, Arial, sans-serif' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.opacity = '0.9'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.opacity = '1'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
             >
               Prihlásiť sa
             </button>
@@ -319,25 +319,24 @@ export default function AdminDashboard() {
     return (
       <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold" style={{ color: '#1f2937', fontFamily: 'Helvetica, Arial, sans-serif' }}>Detail respondenta: {selectedContract.name}</h2>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <h2 className="text-2xl sm:text-3xl font-light" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Detail respondenta: {selectedContract.name}</h2>
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
             <button
               onClick={() => setView('list')}
-              className="px-4 py-2 rounded"
-              style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-              onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#15803d'}
-              onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#16a34a'}
+              className="px-4 py-2 rounded-full font-medium transition-all duration-200"
+              style={{ backgroundColor: '#000000', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', borderRadius: '50px' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#111827'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
             >
               Späť na zoznam
             </button>
-           
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Basic Info */}
-          <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
-            <h3 className="font-semibold mb-3 text-lg" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Základné údaje</h3>
+          <div className="p-6 rounded-2xl shadow-md" style={{ backgroundColor: '#ffffff', border: '1px solid #f1f5f9' }}>
+            <h3 className="font-semibold mb-3 text-lg" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Základné údaje</h3>
             <div className="space-y-2 text-sm" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
               <p><strong>Meno:</strong> {selectedContract.name}</p>
               <p><strong>Email:</strong> {selectedContract.email}</p>
@@ -355,8 +354,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Demographics */}
-          <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
-            <h3 className="font-semibold mb-3 text-lg" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Demografické údaje</h3>
+          <div className="p-6 rounded-2xl shadow-md" style={{ backgroundColor: '#ffffff', border: '1px solid #f1f5f9' }}>
+            <h3 className="font-semibold mb-3 text-lg" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Demografické údaje</h3>
             <div className="space-y-2 text-sm" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
               <p><strong>Vek:</strong> {selectedContract.age || 'Nevyplnené'}</p>
               <p><strong>Pohlavie:</strong> {selectedContract.gender || 'Nevyplnené'}</p>
@@ -371,10 +370,10 @@ export default function AdminDashboard() {
         {/* Questionnaire Responses */}
         {selectedContract.questionnaire_status !== 'not started' && (
           <div className="mt-6">
-            <h3 className="font-bold mb-4" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Odpovede na otázky o biosimilárnych liekoch</h3>
+            <h3 className="font-semibold mb-4 text-lg" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Odpovede na otázky o biosimilárnych liekoch</h3>
             
             {/* Response Statistics */}
-            <div className="mb-6 p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0' }}>
+            <div className="mb-6 p-4 rounded-xl" style={{ backgroundColor: '#f8fafc', border: '1px solid #eef2ff' }}>
               {(() => {
                 const totalQuestions = 29;
                 const answeredQuestions = [
@@ -393,8 +392,8 @@ export default function AdminDashboard() {
                 
                 return (
                   <div className="flex justify-between items-center">
-                    <span className="font-medium" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Pokrok dotazníka:</span>
-                    <span className="font-semibold" style={{ color: '#16a34a', fontFamily: 'Helvetica, Arial, sans-serif' }}>{answeredQuestions}/{totalQuestions} ({completionRate}%)</span>
+                    <span className="font-medium" style={{ color: '#0f172a', fontFamily: 'Helvetica, Arial, sans-serif' }}>Pokrok dotazníka:</span>
+                    <span className="font-semibold px-3 py-1 rounded" style={{ color: '#065f46', backgroundColor: '#ecfdf5', fontFamily: 'Helvetica, Arial, sans-serif' }}>{answeredQuestions}/{totalQuestions} ({completionRate}%)</span>
                   </div>
                 );
               })()}
@@ -637,19 +636,19 @@ export default function AdminDashboard() {
                         setSelectedContract(contract);
                         setView('detail');
                       }}
-                      className="flex-1 px-3 py-2 rounded font-medium transition-colors text-sm"
-                      style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-                      onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-                      onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+                      className="flex-1 px-4 py-2 rounded-full font-medium transition-all text-sm"
+                      style={{ backgroundColor: '#000000', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', borderRadius: '50px' }}
+                      onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#111827'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                      onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
                     >
                       Detail
                     </button>
                     <button
                       onClick={() => downloadContract(contract)}
-                      className="flex-1 px-3 py-2 rounded font-medium transition-colors text-sm"
-                      style={{ backgroundColor: '#47a569ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-                      onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-                      onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
+                      className="flex-1 px-4 py-2 rounded-full font-medium transition-all text-sm"
+                      style={{ backgroundColor: '#1f9d6a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', borderRadius: '50px' }}
+                      onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#15803d'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                      onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = '#1f9d6a'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
                     >
                       Zmluva
                     </button>
@@ -660,68 +659,62 @@ export default function AdminDashboard() {
           </div>
 
           {/* Desktop Table Layout */}
-          <div className="hidden md:block overflow-x-auto">
-          <table className="w-full border-collapse shadow-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            <thead>
-              <tr style={{ backgroundColor: '#f8fafc' }}>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Meno</th>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Email</th>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Vytvorené</th>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Zmluva</th>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Dotazník</th>
-                <th className="px-2 sm:px-4 py-3 text-left font-semibold text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Akcie</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contracts.map((contract) => (
-                <tr key={contract.id} className="hover:bg-gray-50">
-                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.name}</td>
-                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{contract.email}</td>
-                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                    {formatDate(contract.created_at)}
-                  </td>
-                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                    <span className="px-1 sm:px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.contract_approved ? '#16a34a' : '#d65050ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                      {contract.contract_approved ? 'Schválená' : 'Neschválená'}
-                    </span>
-                  </td>
-                  <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm" style={{ border: '1px solid #e5e7eb', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                    <span className="px-1 sm:px-2 py-1 rounded text-xs" style={{ backgroundColor: contract.questionnaire_status === 'submitted' ? '#16a34a' : contract.questionnaire_status === 'in_progress' ? '#eab308' : '#6b7280', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                      {contract.questionnaire_status === 'submitted' ? 'Odoslaný' : 
-                       contract.questionnaire_status === 'in_progress' ? 'V procese' : 
-                       'Nezačatý'}
-                    </span>
-                  </td>
-                  <td className="px-2 sm:px-4 py-2" style={{ border: '1px solid #e5e7eb' }}>
-                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
-                      <button
-                        onClick={() => {
-                          console.log('Detail button clicked for:', contract.name);
-                          setSelectedContract(contract);
-                          setView('detail');
-                        }}
-                        className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium transition-colors"
-                        style={{ backgroundColor: '#16a34a', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-                        onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-                        onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
-                      >
-                        Detail
-                      </button>
-                      <button
-                        onClick={() => downloadContract(contract)}
-                        className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium transition-colors"
-                        style={{ backgroundColor: '#47a569ff', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}
-                        onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#15803d'}
-                        onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#16a34a'}
-                      >
-                         Zmluva
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="hidden md:block">
+            <div className="rounded-2xl overflow-hidden shadow-lg" style={{ border: '1px solid #eef2f7' }}>
+              <table className="w-full table-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', borderCollapse: 'separate', borderSpacing: '0' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#fbfbff' }}>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Meno</th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Email</th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Vytvorené</th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Zmluva</th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Dotazník</th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm" style={{ color: '#334155' }}>Akcie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contracts.map((contract) => (
+                    <tr key={contract.id} className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm" style={{ color: '#0f172a' }}>{contract.name}</td>
+                      <td className="px-4 py-3 text-sm" style={{ color: '#0f172a' }}>{contract.email}</td>
+                      <td className="px-4 py-3 text-sm" style={{ color: '#0f172a' }}>{formatDate(contract.created_at)}</td>
+                      <td className="px-4 py-3 text-sm">
+                        <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: contract.contract_approved ? '#ecfdf5' : '#fff1f2', color: contract.contract_approved ? '#065f46' : '#9f1239' }}>
+                          {contract.contract_approved ? 'Schválená' : 'Neschválená'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm">
+                        <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: contract.questionnaire_status === 'submitted' ? '#ecfdf5' : contract.questionnaire_status === 'in_progress' ? '#fffbeb' : '#f1f5f9', color: contract.questionnaire_status === 'submitted' ? '#065f46' : contract.questionnaire_status === 'in_progress' ? '#92400e' : '#334155' }}>
+                          {contract.questionnaire_status === 'submitted' ? 'Odoslaný' : contract.questionnaire_status === 'in_progress' ? 'V procese' : 'Nezačatý'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => { setSelectedContract(contract); setView('detail'); }}
+                            className="px-3 py-1 text-sm font-medium rounded-full"
+                            style={{ backgroundColor: '#000000', color: '#ffffff', borderRadius: '50px' }}
+                            onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#111827'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                            onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
+                          >
+                            Detail
+                          </button>
+                          <button
+                            onClick={() => downloadContract(contract)}
+                            className="px-3 py-1 text-sm font-medium rounded-full"
+                            style={{ backgroundColor: '#1f9d6a', color: '#ffffff', borderRadius: '50px' }}
+                            onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#15803d'; (e.target as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                            onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = '#1f9d6a'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
+                          >
+                            Zmluva
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
           
           {contracts.length === 0 && (

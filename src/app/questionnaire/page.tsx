@@ -263,63 +263,69 @@ export default function QuestionnairePage() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 mt-4 sm:mt-8" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', maxWidth: '100%', overflowX: 'hidden' }}>
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
       {!isLoaded || checkingAccess ? (
-        <div className="text-center py-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>Načítavam...</div>
+        <div className="text-center py-20" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', fontSize: '16px', letterSpacing: '0.02em' }}>NAČÍTAVAM...</div>
       ) : missingData ? (
-        <div className="font-bold text-center py-8" style={{ color: '#dc2626', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          Chýbajú osobné údaje. Prosím, vyplňte najskôr osobné údaje.<br />
-          <a href="/personal-data" style={{ color: '#0097b2', textDecoration: 'underline', fontFamily: 'Helvetica, Arial, sans-serif' }}>Prejsť na osobné údaje</a>
+        <div className="text-center py-20" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px' }}>
+          <p className="mb-6">Chýbajú osobné údaje. Prosím, vyplňte najskôr osobné údaje.</p>
+          <a href="/personal-data" style={{ color: '#000000', textDecoration: 'none', borderBottom: '2px solid #000000', fontFamily: 'Helvetica, Arial, sans-serif', display: 'inline-block', paddingBottom: '2px', fontSize: '14px', letterSpacing: '0.05em' }}>PREJSŤ NA OSOBNÉ ÚDAJE</a>
         </div>
       ) : (
         <>
-          <div className="mb-4 p-4 rounded" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            <div style={{ color: '#000000' }}><b>Contract ID:</b> {contractId}</div>
-            <div style={{ color: '#000000' }}><b>Meno:</b> {respondent?.name}</div>
-            <div style={{ color: '#000000' }}><b>Email:</b> {respondent?.email}</div>
-          </div>
-          <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>MedInsights 2025 Questionnaire</h1>
-          <div className="mb-6 p-4 rounded" style={{ backgroundColor: '#e6f7ff', border: '1px solid #0097b2' }}>
-            <p className="mb-3" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}><strong>Inštrukcie:</strong> Dotazník obsahuje {totalQuestions} otázok rozdelených do {questionnaire.length} sekcií. Vaše odpovede sa automaticky ukladajú každých 15 sekúnd.</p>
-            <div className="mb-2">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-sm" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Pokrok: {answeredQuestions}/{totalQuestions}</span>
-                <span className="text-sm font-semibold" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{progressPercentage}%</span>
-              </div>
-              <div className="w-full rounded-full h-2" style={{ backgroundColor: '#e5e7eb' }}>
-                <div 
-                  className="h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${progressPercentage}%`, backgroundColor: '#0097b2' }}
-                ></div>
+          <div className="mb-16" style={{ paddingBottom: '16px', borderBottom: '1px solid #e5e7eb' }}>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div style={{ color: '#999999', fontSize: '13px', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '0.03em' }}>ID: {contractId}</div>
+              <div className="flex gap-6">
+                <div style={{ color: '#666666', fontSize: '13px', fontFamily: 'Helvetica, Arial, sans-serif' }}>{respondent?.name}</div>
+                <div style={{ color: '#666666', fontSize: '13px', fontFamily: 'Helvetica, Arial, sans-serif' }}>{respondent?.email}</div>
               </div>
             </div>
           </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-4 sm:mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', letterSpacing: '-0.03em' }}>Prieskum</h1>
+          <p className="text-base sm:text-lg mb-12 sm:mb-20" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#666666' }}>MedInsights 2025</p>
+          <div className="mb-20">
+            <div className="flex justify-between items-center mb-4">
+              <div style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '14px', letterSpacing: '0.02em' }}>{answeredQuestions} / {totalQuestions}</div>
+              <div style={{ color: '#999999', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px' }}>{progressPercentage}%</div>
+            </div>
+            <div className="w-full h-0.5" style={{ backgroundColor: '#f0f0f0' }}>
+              <div 
+                className="h-0.5 transition-all duration-500"
+                style={{ width: `${progressPercentage}%`, backgroundColor: '#000000' }}
+              ></div>
+            </div>
+            <p className="mt-6" style={{ color: '#999999', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13px', lineHeight: '1.6' }}>
+              Dotazník obsahuje {totalQuestions} otázok v {questionnaire.length} sekciách. Vaše odpovede sa automaticky ukladajú.
+            </p>
+          </div>
           {questionnaire.map((section, sectionIndex) => (
-            <div key={section.section} className="mb-8">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm font-bold" style={{ backgroundColor: '#0097b2', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                  {sectionIndex + 1}
-                </div>
-                <h2 className="text-xl font-bold" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{section.section}</h2>
+            <div key={section.section} className="mb-16 sm:mb-24">
+              <div className="mb-8 sm:mb-10 pb-4 sm:pb-6" style={{ borderBottom: '1px solid #e5e7eb' }}>
+                <div className="text-xs mb-2 sm:mb-3" style={{ color: '#999999', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '0.1em' }}>SEKCIA {sectionIndex + 1}</div>
+                <h2 className="text-2xl sm:text-3xl font-light" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '-0.02em' }}>{section.section}</h2>
               </div>
-              {section.introduction && <div className="mb-4 p-3" style={{ backgroundColor: '#f9fafb', borderLeft: '4px solid #0097b2', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{section.introduction}</div>}
+              {section.introduction && <div className="mb-8 sm:mb-12 pl-4 sm:pl-6" style={{ borderLeft: '2px solid #f0f0f0', color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '14px', lineHeight: '1.8' }}>{section.introduction}</div>}
               {section.questions.map((q, questionIndex) => {
                 const globalQuestionNumber = questionnaire
                   .slice(0, sectionIndex)
                   .reduce((total, s) => total + s.questions.length, 0) + questionIndex + 1;
                 
                 return (
-                <div key={q.id} className="mb-6 p-4 rounded-lg" style={{ backgroundColor: '#ffffff', border: '1px solid #0097b2', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)' }}>
-                  <label className="block font-semibold mb-3" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                    <span className="inline-block w-6 h-6 rounded-full text-xs text-center leading-6 mr-2" style={{ backgroundColor: '#0097b2', color: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                <div key={q.id} className="mb-8 sm:mb-10">
+                  <div className="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8">
+                    <div className="text-xs mt-1" style={{ color: '#cccccc', fontFamily: 'Helvetica, Arial, sans-serif', minWidth: '20px', letterSpacing: '0.05em' }}>
                       {globalQuestionNumber}
-                    </span>
-                    {q.text}
-                  </label>
+                    </div>
+                    <label className="block flex-1" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '16px', lineHeight: '1.6', fontWeight: '400' }}>
+                      {q.text}
+                    </label>
+                  </div>
+                  <div className="ml-8 sm:ml-12">
                   {q.type === "single" && Array.isArray(q.options) ? (
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 flex-wrap">
+                    <div className="flex flex-col gap-3">
                       {q.options.map((opt: string, idx: number) => (
-                        <label key={opt} className="flex items-center gap-2 text-sm sm:text-base p-2 sm:p-0">
+                        <label key={opt} className="flex items-center gap-4 cursor-pointer py-2 px-4 transition-all" style={{ fontSize: '15px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', backgroundColor: answers[q.id] === opt ? '#fafafa' : 'transparent' }}>
                           <input
                             type="radio"
                             name={q.id}
@@ -327,17 +333,17 @@ export default function QuestionnairePage() {
                             checked={answers[q.id] === opt}
                             onChange={() => handleChange(q.id, opt)}
                             disabled={submitted}
-                            className="min-w-4 min-h-4"
+                            style={{ width: '16px', height: '16px', accentColor: '#000000', flexShrink: 0 }}
                           />
-                          <span className="break-words">{opt}</span>
+                          <span>{opt}</span>
                         </label>
                       ))}
                     </div>
                   ) : q.type === "multi_other" && Array.isArray(q.options) ? (
                     <>
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 flex-wrap mb-2">
+                      <div className="flex flex-col gap-3 mb-2">
                         {q.options.map((opt: string, idx: number) => (
-                          <label key={opt} className="flex items-center gap-2 text-sm sm:text-base p-2 sm:p-0">
+                          <label key={opt} className="flex items-center gap-4 cursor-pointer py-2 px-4 transition-all" style={{ fontSize: '15px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', backgroundColor: Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes(opt) ? '#fafafa' : 'transparent' }}>
                             <input
                               type="checkbox"
                               name={q.id}
@@ -352,29 +358,31 @@ export default function QuestionnairePage() {
                                 }
                               }}
                               disabled={submitted}
-                              className="min-w-4 min-h-4"
+                              style={{ width: '16px', height: '16px', accentColor: '#000000', flexShrink: 0 }}
                             />
-                            <span className="break-words">{opt}</span>
+                            <span>{opt}</span>
                           </label>
                         ))}
                       </div>
                       {Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes("Iné") && (
                         <textarea
-                          className="w-full border rounded p-2 sm:p-3 mt-2 text-sm sm:text-base"
-                          rows={2}
+                          className="w-full p-5 mt-4 transition-all"
+                          rows={3}
                           placeholder="Prosím špecifikujte..."
                           value={answers[`${q.id}_other`] || ""}
                           onChange={(e) => handleChange(`${q.id}_other`, e.target.value)}
                           disabled={submitted}
-                          style={{ minHeight: '44px', resize: 'vertical' }}
+                          style={{ minHeight: '100px', resize: 'vertical', border: '1px solid #f0f0f0', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', fontSize: '15px', lineHeight: '1.7', outline: 'none', backgroundColor: '#fafafa' }}
+                          onFocus={(e) => { (e.target as HTMLElement).style.border = '1px solid #000000'; }}
+                          onBlur={(e) => { (e.target as HTMLElement).style.border = '1px solid #f0f0f0'; }}
                         />
                       )}
                     </>
                   ) : q.type === "single_open" && Array.isArray(q.options) ? (
                     <>
-                      <div className="flex gap-4 mb-2">
+                      <div className="flex flex-col gap-3 mb-2">
                         {q.options.map((opt: string, idx: number) => (
-                          <label key={opt} className="flex items-center gap-1">
+                          <label key={opt} className="flex items-center gap-4 cursor-pointer py-2 px-4 transition-all" style={{ fontSize: '15px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', backgroundColor: answers[q.id] === opt ? '#fafafa' : 'transparent' }}>
                             <input
                               type="radio"
                               name={q.id}
@@ -382,6 +390,7 @@ export default function QuestionnairePage() {
                               checked={answers[q.id] === opt}
                               onChange={() => handleChange(q.id, opt)}
                               disabled={submitted}
+                              style={{ width: '16px', height: '16px', accentColor: '#000000', flexShrink: 0 }}
                             />
                             {opt}
                           </label>
@@ -389,19 +398,21 @@ export default function QuestionnairePage() {
                       </div>
                       {answers[q.id] === "Iné" && (
                         <textarea
-                          className="w-full border rounded p-2 sm:p-3 text-sm sm:text-base"
+                          className="w-full p-5 mt-4 transition-all"
                           rows={3}
                           value={answers[q.id] || ""}
                           onChange={(e) => handleChange(q.id, e.target.value)}
                           disabled={submitted}
-                          style={{ minHeight: '44px', resize: 'vertical' }}
+                          style={{ minHeight: '100px', resize: 'vertical', border: '1px solid #f0f0f0', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', fontSize: '15px', lineHeight: '1.7', outline: 'none', backgroundColor: '#fafafa' }}
+                          onFocus={(e) => { (e.target as HTMLElement).style.border = '1px solid #000000'; }}
+                          onBlur={(e) => { (e.target as HTMLElement).style.border = '1px solid #f0f0f0'; }}
                         />
                       )}
                     </>
                   ) : q.type === "multi" && Array.isArray(q.options) ? (
-                    <div className="flex gap-4 flex-wrap">
+                    <div className="flex flex-col gap-3">
                       {q.options.map((opt: string, idx: number) => (
-                        <label key={opt} className="flex items-center gap-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
+                        <label key={opt} className="flex items-center gap-4 cursor-pointer py-2 px-4 transition-all" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', fontSize: '15px', backgroundColor: Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes(opt) ? '#fafafa' : 'transparent' }}>
                           <input
                             type="checkbox"
                             name={q.id}
@@ -416,15 +427,16 @@ export default function QuestionnairePage() {
                               }
                             }}
                             disabled={submitted}
+                            style={{ width: '16px', height: '16px', accentColor: '#000000', flexShrink: 0 }}
                           />
                           {opt}
                         </label>
                       ))}
                     </div>
                   ) : q.type === "likert" && Array.isArray(q.options) ? (
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-3">
                       {q.options.map((opt: string, idx: number) => (
-                        <label key={opt} className="flex items-center gap-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000' }}>
+                        <label key={opt} className="flex items-center gap-4 cursor-pointer py-2 px-4 transition-all" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', fontSize: '15px', backgroundColor: answers[q.id] === opt ? '#fafafa' : 'transparent' }}>
                           <input
                             type="radio"
                             name={q.id}
@@ -432,6 +444,7 @@ export default function QuestionnairePage() {
                             checked={answers[q.id] === opt}
                             onChange={() => handleChange(q.id, opt)}
                             disabled={submitted}
+                            style={{ width: '16px', height: '16px', accentColor: '#000000', flexShrink: 0 }}
                           />
                           {opt}
                         </label>
@@ -439,65 +452,74 @@ export default function QuestionnairePage() {
                     </div>
                   ) : (
                     <textarea
-                      className="w-full rounded p-2 sm:p-3 text-sm sm:text-base"
-                      style={{ border: '1px solid #0097b2', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', minHeight: '44px', resize: 'vertical' }}
-                      rows={3}
+                      className="w-full p-5 transition-all"
+                      style={{ border: '1px solid #f0f0f0', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', minHeight: '120px', resize: 'vertical', fontSize: '15px', lineHeight: '1.7', outline: 'none', backgroundColor: '#fafafa' }}
+                      rows={4}
                       value={answers[q.id] || ""}
                       onChange={(e) => handleChange(q.id, e.target.value)}
                       disabled={submitted}
+                      onFocus={(e) => { (e.target as HTMLElement).style.border = '1px solid #000000'; }}
+                      onBlur={(e) => { (e.target as HTMLElement).style.border = '1px solid #f0f0f0'; }}
                     />
                   )}
+                  </div>
                 </div>
                 );
               })}
             </div>
           ))}
-          <div className="mb-4 p-4 rounded" style={{ backgroundColor: '#f9fafb', border: '1px solid #0097b2' }}>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Odpovede:</span>
-              <span className="text-sm font-semibold" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>{answeredQuestions}/{totalQuestions}</span>
+          <div className="mt-16 sm:mt-24 mb-12 sm:mb-16 pt-8 sm:pt-12" style={{ borderTop: '1px solid #e5e7eb' }}>
+            <div className="flex justify-between items-center mb-8 sm:mb-12">
+              <div>
+                <div style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', fontWeight: '300', marginBottom: '4px' }}>{answeredQuestions} / {totalQuestions}</div>
+                <div style={{ color: '#999999', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '12px' }}>Vyplnené otázky</div>
+              </div>
+              <div className="text-right">
+                <div style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', fontWeight: '300', marginBottom: '4px' }}>{Math.ceil(totalQuestions * 0.5)}</div>
+                <div style={{ color: '#999999', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '12px' }}>Minimum (50%)</div>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif' }}>Minimálny požadovaný počet (50%):</span>
-              <span className={`text-sm font-semibold`} style={{ color: answeredQuestions >= totalQuestions * 0.5 ? '#16a34a' : '#dc2626', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                {Math.ceil(totalQuestions * 0.5)}
-              </span>
-            </div>
+            <button
+              className="w-full py-5 sm:py-6 px-6 sm:px-8 font-normal transition-all duration-300"
+              style={{
+                backgroundColor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? 'transparent' : '#f5f5f5',
+                color: answeredQuestions >= totalQuestions * 0.5 && !submitted ? '#000000' : '#cccccc',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                border: '2px solid #000000',
+                cursor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? 'pointer' : 'not-allowed',
+                letterSpacing: '0.1em',
+                fontSize: '13px',
+                borderRadius: '50px'
+              }}
+              onMouseEnter={(e) => {
+                if (answeredQuestions >= totalQuestions * 0.5 && !submitted) {
+                  (e.target as HTMLElement).style.backgroundColor = '#000000';
+                  (e.target as HTMLElement).style.color = '#ffffff';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (answeredQuestions >= totalQuestions * 0.5 && !submitted) {
+                  (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                  (e.target as HTMLElement).style.color = '#000000';
+                }
+              }}
+              onClick={handleSubmit}
+              disabled={submitted || answeredQuestions < totalQuestions * 0.5}
+            >
+              {submitted ? 'ODOSLANÉ' : 
+               answeredQuestions < totalQuestions * 0.5 ? 
+               `POTREBUJETE ASPOŇ ${Math.ceil(totalQuestions * 0.5)} ODPOVEDÍ` :
+               'ODOSLAŤ PRIESKUM'}
+            </button>
+            {autosaveTime && !submitted && (
+              <div className="text-center mt-6" style={{ color: '#cccccc', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '12px' }}>Naposledy uložené {autosaveTime.toLocaleTimeString()}</div>
+            )}
           </div>
-          <button
-            className="w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-base sm:text-lg transition-all"
-            style={{
-              backgroundColor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? '#16a34a' : '#d1d5db',
-              color: answeredQuestions >= totalQuestions * 0.5 && !submitted ? '#ffffff' : '#6b7280',
-              fontFamily: 'Helvetica, Arial, sans-serif',
-              cursor: answeredQuestions >= totalQuestions * 0.5 && !submitted ? 'pointer' : 'not-allowed',
-              minHeight: '44px'
-            }}
-            onMouseEnter={(e) => {
-              if (answeredQuestions >= totalQuestions * 0.5 && !submitted) {
-                (e.target as HTMLElement).style.backgroundColor = '#15803d';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (answeredQuestions >= totalQuestions * 0.5 && !submitted) {
-                (e.target as HTMLElement).style.backgroundColor = '#16a34a';
-              }
-            }}
-            onClick={handleSubmit}
-            disabled={submitted || answeredQuestions < totalQuestions * 0.5}
-          >
-            {submitted ? 'Prieskum odoslaný' : 
-             answeredQuestions < totalQuestions * 0.5 ? 
-             `Odpovedajte aspoň na ${Math.ceil(totalQuestions * 0.5)} otázok` :
-             `Poslať prieskum (${answeredQuestions}/${totalQuestions} odpovedí)`}
-          </button>
-          {autosaveTime && !submitted && (
-            <div className="text-xs mt-2" style={{ color: '#6b7280', fontFamily: 'Helvetica, Arial, sans-serif' }}>Automaticky uložené: {autosaveTime.toLocaleTimeString()}</div>
-          )}
           {submitted && timestamp && (
-            <div className="font-bold mt-6 text-center" style={{ color: '#0097b2', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              Ďakujeme za vyplnenie prieskumu MedInsights 2025. Váš záznam bol úspešne odoslaný.<br />
-              <span className="text-xs" style={{ color: '#6b7280', fontFamily: 'Helvetica, Arial, sans-serif' }}>Odoslané: {timestamp}</span>
+            <div className="mt-16 text-center py-12" style={{ borderTop: '1px solid #e5e7eb' }}>
+              <div style={{ fontSize: '32px', fontWeight: '300', marginBottom: '12px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#000000', letterSpacing: '-0.02em' }}>Ďakujeme</div>
+              <p style={{ fontSize: '15px', color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif', marginBottom: '8px' }}>Váš prieskum bol úspešne odoslaný</p>
+              <span style={{ color: '#cccccc', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '12px' }}>{timestamp}</span>
             </div>
           )}
         </>

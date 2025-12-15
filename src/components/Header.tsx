@@ -3,17 +3,15 @@ import React from "react";
 
 export default function Header() {
   return (
-    <header className="w-full top-0 z-50 flex flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4" style={{ background: 'transparent' }}>
-      <div className="flex items-center gap-3">
+    <header className="w-full top-0 z-50 flex flex-row items-center justify-between px-6 sm:px-12 py-6 sm:py-8" style={{ background: '#ffffff', borderBottom: '1px solid #f0f0f0' }}>
+      <div className="flex items-center">
         <a href="/">
           <img 
             src="/logo.jpg" 
-            alt="Logo" 
-            className="h-16 sm:h-20 lg:h-24 w-auto rounded p-1 transition-all duration-200 hover:scale-105" 
+            alt="MedInsights Logo" 
+            className="h-20 sm:h-24 w-auto transition-opacity duration-300 hover:opacity-80" 
             style={{ 
-              border: '1px solid #0097b2', 
-              backgroundColor: '#ffffff', 
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' 
+              border: 'none'
             }} 
           />
         </a>
@@ -21,25 +19,24 @@ export default function Header() {
       <div className="flex items-center">
         <a 
           href="/admin" 
-          className="px-3 sm:px-4 lg:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base" 
+          className="px-6 py-2 text-sm font-medium transition-all duration-300 tracking-wide" 
           style={{ 
-            backgroundColor: '#16a34a', 
-            color: '#ffffff', 
+            backgroundColor: 'transparent', 
+            color: '#000000', 
             fontFamily: 'Helvetica, Arial, sans-serif', 
-            boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)'
+            border: '1px solid #000000',
+            letterSpacing: '0.05em'
           }} 
           onMouseEnter={(e) => {
-            (e.target as HTMLElement).style.backgroundColor = '#15803d';
-            (e.target as HTMLElement).style.transform = 'translateY(-1px)';
-            (e.target as HTMLElement).style.boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.15)';
+            (e.target as HTMLElement).style.backgroundColor = '#000000';
+            (e.target as HTMLElement).style.color = '#ffffff';
           }} 
           onMouseLeave={(e) => {
-            (e.target as HTMLElement).style.backgroundColor = '#16a34a';
-            (e.target as HTMLElement).style.transform = 'translateY(0)';
-            (e.target as HTMLElement).style.boxShadow = '0 2px 4px 0 rgba(0, 0, 0, 0.1)';
+            (e.target as HTMLElement).style.backgroundColor = 'transparent';
+            (e.target as HTMLElement).style.color = '#000000';
           }}
         >
-          Administrácia
+          ADMIN
         </a>
       </div>
     </header>
