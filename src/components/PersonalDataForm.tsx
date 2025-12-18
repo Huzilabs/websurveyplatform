@@ -81,14 +81,15 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
       bank: 'Bankové spojenie (Názov banky):',
       iban: 'IBAN:',
       taxId: 'DIČ alebo rodné číslo:',
-      submit: 'Vygenero-vať návrh zmluvy o dielo',
+      submit: 'Vygenerovať návrh zmluvy o dielo',
       contractTitle: 'Návrh zmluvy',
-      contractText: 'Zaškrtnutím tohto políčka prehlasujem, že som si zmluvu riadne prečítal/a a súhlasi s hore uvedenými zmluvnými podmienkami.',
-      agree: 'Súhlasi ',
-      submitFinal: 'Odeslať a pokračovať',
+      contractText: 'Zaškrtnutím tohto políčka prehlasujem, že som si zmluvu riadne prečítal/a a súhlasím s hore uvedenými zmluvnými podmienkami.',
+      agree: 'Súhlasím',
+      submitFinal: 'Schváliť zmluvu',
     },
   };
-  const t = translations[lang] || translations.en;
+  // Use Slovak expressions for Frame 2 as requested by client
+  const t = translations['sk'];
 
   function validateEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -109,16 +110,79 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
     // Validate email before proceeding
     if (!validateEmail(form.email)) {
       setEmailError('Prosím, zadajte platnú e-mailovú adresu');
       return;
     }
-    
-    setReviewMode(true);
+
+    setLoading(true);
+    try {
+      // Create or update contract draft in DB and redirect to /contract to show the draft
+      let contractId = null;
+      const { data: existing, error: fetchError } = await supabase
+        .from('contracts')
+        .select('id')
+        .eq('email', form.email)
+        .maybeSingle();
+
+      if (fetchError && fetchError.code !== 'PGRST116') {
+        console.error('Error checking existing contract:', fetchError);
+      }
+
+      if (existing && existing.id) {
+        contractId = existing.id;
+        const { error: updateError } = await supabase.from('contracts').update({
+          name: form.name,
+          street: form.street,
+          postal_code_city: form.city,
+          bank_name: form.bank,
+          iban: form.iban,
+          tin_or_personal_id: form.taxId,
+          contract_approved: false,
+          questionnaire_status: 'not started',
+          updated_at: new Date().toISOString()
+        }).eq('id', contractId);
+
+        if (updateError) console.error('Error updating contract:', updateError);
+      } else {
+        const { data, error } = await supabase.from('contracts').insert({
+          name: form.name,
+          street: form.street,
+          postal_code_city: form.city,
+          email: form.email,
+          bank_name: form.bank,
+          iban: form.iban,
+          tin_or_personal_id: form.taxId,
+          contract_approved: false,
+          questionnaire_status: 'not started',
+          created_at: new Date().toISOString()
+        }).select().single();
+
+        if (error) {
+          console.error('Error creating contract:', error);
+        }
+
+        contractId = data?.id || null;
+      }
+
+      // Save to localStorage for contract page to read
+      if (contractId) {
+        const contractorData = { ...form, contractId };
+        window.localStorage.setItem('contractorData', JSON.stringify(contractorData));
+        window.localStorage.setItem('contractId', contractId);
+      }
+
+      setLoading(false);
+      // Redirect to contract page where the draft will be displayed and user can check the box and approve
+      window.location.href = '/contract';
+    } catch (error) {
+      console.error('Unexpected error in handleSubmit:', error);
+      setLoading(false);
+    }
   }
 
   async function handleApprove() {

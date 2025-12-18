@@ -44,42 +44,21 @@ export default function Home() {
             </h2>
           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Vaše názory majú reálny dopad na tvorbu edukácie pre lekárov aj pacientov.
-                </p>
-              </div>
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Prieskum je anonymný v oblasti odpovedí, administrácia prebieha cez zabezpečený portál.
-                </p>
-              </div>
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Vyplnenie dotazníka trvá približne 60 minút.
-                </p>
-              </div>
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Neexistujú správne alebo nesprávne odpovede – dôležitý je Váš osobný odborný názor.
-                </p>
-              </div>
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Po vyplnení všetkých položiek bude možné úspešne dokončiť dotazník.
-                </p>
-              </div>
-              <div className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <div className="w-3 h-3 bg-black rounded-full mb-4"></div>
-                <p className="text-base leading-relaxed" style={{ color: '#333333' }}>
-                  Vyplnenie celého dotazníka je podmienkou účasti a následne aj odmeny.
-                </p>
-              </div>
+              {[
+                'Vaše názory majú reálny dopad na tvorbu edukácie pre lekárov aj pacientov.',
+                'Prieskum je anonymný v oblasti odpovedí, administrácia prebieha cez zabezpečený portál.',
+                'Vyplnenie dotazníka trvá približne 60 minút.',
+                'Neexistujú správne alebo nesprávne odpovede – dôležitý je Váš osobný odborný názor.',
+                'Po vyplnení všetkých položiek bude možné úspešne dokončiť dotazník.',
+                'Vyplnenie celého dotazníka je podmienkou účasti a následne aj odmeny.'
+              ].map((text) => (
+                <div key={text} className="p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                  <div className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 bg-black rounded-full mt-2" aria-hidden="true"></span>
+                    <p className="text-base leading-relaxed" style={{ color: '#333333' }}>{text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

@@ -9,7 +9,7 @@ export default function Header() {
           <img 
             src="/logo.jpg" 
             alt="MedInsights Logo" 
-            className="h-20 sm:h-24 w-auto transition-opacity duration-300 hover:opacity-80" 
+            className="h-24 sm:h-28 w-auto transition-opacity duration-300 hover:opacity-80" 
             style={{ 
               border: 'none'
             }} 
