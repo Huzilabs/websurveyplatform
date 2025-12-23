@@ -963,7 +963,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
                         {q.type === "single" && Array.isArray(q.options) ? (
                           <div className="flex flex-col gap-3">
                             {q.options.map((opt: string, idx: number) => {
-                              const hasIne = q.options.includes("Iné");
+                              const hasIne = Array.isArray(q.options) && q.options.includes("Iné");
                               const isChecked = hasIne
                                 ? Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes(opt)
                                 : answers[q.id] === opt;
@@ -1056,7 +1056,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
                           <>
                             <div className="flex flex-col gap-3 mb-2">
                               {q.options.map((opt: string, idx: number) => {
-                                const hasIne = q.options.includes("Iné");
+                                const hasIne = Array.isArray(q.options) && q.options.includes("Iné");
                                 const isChecked = hasIne
                                   ? Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes(opt)
                                   : answers[q.id] === opt;
@@ -1145,7 +1145,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
                       ) : q.type === "likert" && Array.isArray(q.options) ? (
                         <div className="flex flex-col gap-3">
                           {q.options.map((opt: string, idx: number) => {
-                            const hasIne = q.options.includes("Iné");
+                            const hasIne = Array.isArray(q.options) && q.options.includes("Iné");
                             const isChecked = hasIne
                               ? Array.isArray(answers[q.id]) && (answers[q.id] as string[]).includes(opt)
                               : answers[q.id] === opt;
