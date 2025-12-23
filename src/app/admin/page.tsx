@@ -63,6 +63,20 @@ interface ContractData {
   q27_additional_info_needed?: string;
   q28_colleague_consultation_frequency?: string;
   q29_patient_advantages?: string;
+  q_v2_1: string;
+  q_v2_2: string;
+  q_v2_3: string;
+  q_v2_4: string;
+  q_v3_1: string;
+  q_v3_2: string;
+  q_v4_1: string;
+  q_v4_2: string;
+  q_v4_3: string;
+  q_v5_1: string;
+  q_v6_1: string;
+  q_v6_2: string;
+  q_v6_3: string;
+  q_v7_1: string
 }
 
 export default function AdminDashboard() {
@@ -375,7 +389,7 @@ export default function AdminDashboard() {
             {/* Response Statistics */}
             <div className="mb-6 p-4 rounded-xl" style={{ backgroundColor: '#f8fafc', border: '1px solid #eef2ff' }}>
               {(() => {
-                const totalQuestions = 29;
+                const totalQuestions = 44;
                 const answeredQuestions = [
                   'q1_trust_expert', 'q2_info_sources', 'q3_better_orientation', 'q4_communication_form',
                   'q5_effectiveness_rating', 'q6_safety_rating', 'q7_side_effects_risk', 'q8_safety_support',
@@ -444,8 +458,8 @@ export default function AdminDashboard() {
                       </div>
                     );
                   })}
-                </div>
-              </div>
+                </div>  
+              </div>     
 
               {/* Section 3: Practical Use */}
               <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
@@ -478,7 +492,8 @@ export default function AdminDashboard() {
                     { key: 'q14_patient_transition', label: 'Vnímanie prechodu pacienta (1-4)' },
                     { key: 'q15_original_response_influence', label: 'Vplyv dobrej reakcie na originál' },
                     { key: 'q16_switching_motivators', label: 'Motivátory pre switching' },
-                    { key: 'q17_transition_conditions', label: 'Podmienky pre prechod' }
+                    { key: 'q17_transition_conditions', label: 'Podmienky pre prechod' },
+                    {key: 'q_v7_1', label: 'Ako zvyčajne predstavíte pacientovi zmenu liečby? '}
                   ].map((question) => {
                     const value = selectedContract[question.key as keyof ContractData] as string;
                     
@@ -499,7 +514,10 @@ export default function AdminDashboard() {
                   {[
                     { key: 'q18_patient_presentation', label: 'Prezentovanie zmeny pacientovi' },
                     { key: 'q19_discuss_origin_frequency', label: 'Frekvencia diskusie o pôvode' },
-                    { key: 'q20_prescription_barriers', label: 'Prekážky pri predpisovaní' }
+                    { key: 'q20_prescription_barriers', label: 'Prekážky pri predpisovaní' },
+                    { key: 'q_v6_1', label: 'Vás ovplyvňuje senzitívnosť' },
+                    { key: 'q_v6_2', label: 'Máte osobnú skúsenosť' },
+                    { key: 'q_v6_3', label: 'Vám pomohlo uľahčiť komunikáciu' },
                   ].map((question) => {
                     const value = selectedContract[question.key as keyof ContractData] as string;
                     
@@ -513,7 +531,7 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* Section 6: Experience and Benefits */}
+              {/* Section 7: Experience and Benefits */}
               <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
                 <h4 className="font-semibold mb-3" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Skúsenosti a výho dy (Otázky 21-29)</h4>
                 <div className="grid grid-cols-1 gap-3">
@@ -522,11 +540,11 @@ export default function AdminDashboard() {
                     { key: 'q22_transition_advantages', label: 'Výhody prechodu' },
                     { key: 'q23_patient_decision_factors', label: 'Faktory rozhodnutia pacienta' },
                     { key: 'q24_info_accuracy_rating', label: 'Presnosť informácií (1-4)' },
-                    { key: 'q25_communication_improvements', label: 'Zlepšenie komunikácie' },
-                    { key: 'q26_necessary_conditions', label: 'Potrebné podmienky' },
-                    { key: 'q27_additional_info_needed', label: 'Dodatočné informácie' },
-                    { key: 'q28_colleague_consultation_frequency', label: 'Konzultácie s kolegami (1-4)' },
-                    { key: 'q29_patient_advantages', label: 'Výhody pre pacientov' }
+                    // { key: 'q25_communication_improvements', label: 'Zlepšenie komunikácie' },
+                    // { key: 'q26_necessary_conditions', label: 'Potrebné podmienky' },
+                    // { key: 'q27_additional_info_needed', label: 'Dodatočné informácie' },
+                    // { key: 'q28_colleague_consultation_frequency', label: 'Konzultácie s kolegami (1-4)' },
+                    // { key: 'q29_patient_advantages', label: 'Výhody pre pacientov' }
                   ].map((question) => {
                     const value = selectedContract[question.key as keyof ContractData] as string;
                     
@@ -539,6 +557,92 @@ export default function AdminDashboard() {
                   })}
                 </div>
               </div>
+<div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <h4 className="font-semibold mb-3" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Regulácia a schvaľovanie</h4>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { key: 'q_v2_1', label: 'dostatočne oboznámený/á' },
+                    { key: 'q_v2_2', label: 'termín extrapolácia' },
+                    { key: 'q_v2_3', label: 'Aké informácie' },
+                    { key: 'q_v2_4', label: 'Privítali by ste' },
+                    
+                  ].map((question) => {
+                    const value = selectedContract[question.key as keyof ContractData] as string;
+                    
+                    return (
+                      <div key={question.key} className="bg-white p-3 border rounded">
+                        <p className="font-medium text-gray-800 mb-1">{question.label}:</p>
+                        <p className="text-gray-600">{value || 'Nevyplnené'}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+
+ <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <h4 className="font-semibold mb-3" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Ekonomické a dostupnostné faktory</h4>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { key: 'q_v3_1', label: 'Považujete biosimilárne' },
+                    { key: 'q_v3_2', label: 'Čo by podľa vášho' },
+                    
+                  ].map((question) => {
+                    const value = selectedContract[question.key as keyof ContractData] as string;
+                    
+                    return (
+                      <div key={question.key} className="bg-white p-3 border rounded">
+                        <p className="font-medium text-gray-800 mb-1">{question.label}:</p>
+                        <p className="text-gray-600">{value || 'Nevyplnené'}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+ <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <h4 className="font-semibold mb-3" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Edukácia a podpora</h4>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { key: 'q_v4_1', label: 'Máte záujem' },
+                    { key: 'q_v4_2', label: 'Ktoré témy' },
+                     { key: 'q_v4_3', label: 'Aká forma vzdelávania' },
+                    
+                  ].map((question) => {
+                    const value = selectedContract[question.key as keyof ContractData] as string;
+                    
+                    return (
+                      <div key={question.key} className="bg-white p-3 border rounded">
+                        <p className="font-medium text-gray-800 mb-1">{question.label}:</p>
+                        <p className="text-gray-600">{value || 'Nevyplnené'}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+<div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <h4 className="font-semibold mb-3" style={{ color: '#374151', fontFamily: 'Helvetica, Arial, sans-serif' }}>Odporúčania a návrhy (Otázky 18-20)</h4>
+                <div className="grid grid-cols-1 gap-3">
+                  {[
+                    { key: 'q_v5_1', label: 'Aké kroky' },
+                    
+                  ].map((question) => {
+                    const value = selectedContract[question.key as keyof ContractData] as string;
+                    
+                    return (
+                      <div key={question.key} className="bg-white p-3 border rounded">
+                        <p className="font-medium text-gray-800 mb-1">{question.label}:</p>
+                        <p className="text-gray-600">{value || 'Nevyplnené'}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
 
               {/* Demographics */}
               <div className="p-4 rounded-lg border shadow-sm" style={{ backgroundColor: '#ffffff', border: '1px solid #e5e7eb' }}>

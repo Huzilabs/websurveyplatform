@@ -72,7 +72,7 @@ export default function PersonalDataForm({ onSubmit }: { onSubmit: (data: Person
       submitFinal: 'Submit and Continue',
     },
     sk: {
-      title: 'Vyplňte svoje osobné údaje',
+      title: 'Prosím Vyplňte svoje osobné údaje',
       reviewTitle: 'Skontrolujte svoje údaje',
       name: 'Meno a priezvisko:',
       street: 'Ulica, č. d.:',

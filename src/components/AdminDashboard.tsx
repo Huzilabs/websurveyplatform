@@ -483,7 +483,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Admin sDashboard - MedInsights 2025</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Admin sDashboard - MedInsights 2026</h2>
       
       {loading ? (
         <div className="text-center py-8">

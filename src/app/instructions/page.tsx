@@ -17,7 +17,7 @@ export default function InstructionsPage() {
       </ul>
       <h2 className="text-lg sm:text-xl font-semibold mb-2">Dôležité termíny</h2>
       <ul className="list-disc pl-4 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
-        <li>Trvanie prieskumu: 15. 12. 2025 – 15. 01. 2026</li>
+        <li>Trvanie prieskumu: 15. 12. 2026 – 15. 01. 2026</li>
         <li>Dotazník je potrebné vyplniť v rámci daného obdobia.</li>
       </ul>
       <button
