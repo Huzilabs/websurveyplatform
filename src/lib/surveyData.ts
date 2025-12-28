@@ -1,4 +1,4 @@
-// Multilingual survey questions for MedInsights 2025
+// Multilingual survey questions for MedInsights 2026
 export const survey = {
   survey_id: "MedInsights2026",
   version: "1.0",

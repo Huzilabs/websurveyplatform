@@ -18,7 +18,7 @@ export default function Footer({ variant }: { variant?: "landing" }) {
               V prípade otázok nás kontaktujte na:
             </div>
             <div className="mt-1">
-              <a href="mailto:podpora@webinsights.sk" className="text-sm" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}>podpora@webinsights.sk</a>
+              <a href="mailto:podpora@medinsights.sk" className="text-sm" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}>podpora@medinsights.sk</a>
             </div>
           </div>
 

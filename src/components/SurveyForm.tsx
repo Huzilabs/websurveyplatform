@@ -62,12 +62,12 @@ export default function SurveyForm({ survey, respondentId }: SurveyFormProps) {
       answers,
     };
     await supabase.from('responses').upsert([response]);
-    alert('Ďakujeme za vyplnenie prieskumu MedInsights 2025. Váš záznam bol úspešne odoslaný.');
+    alert('Ďakujeme za vyplnenie prieskumu MedInsights 2026. Váš záznam bol úspešne odoslaný.');
   }
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 bg-white rounded shadow">
-      <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{lang === 'sk' ? 'Dotazník MedInsights 2026' : 'MedInsights 2025 Questionnaire'}</h2>
+      <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{lang === 'sk' ? 'Dotazník MedInsights 2026' : 'MedInsights 2026 Questionnaire'}</h2>
       {survey.questions.map(q => (
         <div key={q.id} className="mb-4 sm:mb-6">
           <label className="block font-semibold mb-2 text-sm sm:text-base" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{String(q.question_text[lang as keyof typeof q.question_text])}</label>

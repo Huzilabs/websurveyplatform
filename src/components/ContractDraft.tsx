@@ -43,7 +43,7 @@ DIČ alebo rodné číslo: ${contractor.taxId}
 (ďalej len "Zhotoviteľ")
 Článok I.
 Dielo
-1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom „MedInsights 2025“ organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len „dielo“).
+1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom „MedInsights 2026" organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len „dielo").
 2. Objednávateľ sa zaväzuje zaplatiť zhotoviteľovi odmenu za dielo uvedenú v čl. II.
 Článok II.
 Odmena

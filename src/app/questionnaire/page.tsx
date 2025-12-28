@@ -7,7 +7,7 @@ import { supabase } from "../../lib/supabaseClient";
 const questionnaire = [
  
   {
-    section: "I. Cieľ prieskumu",
+    section: "I. DEMOGRAFICKÁ ČASŤ",
     introduction:
       "Cieľom tohto marketingového prieskumu je získať dôkladný prehľad o znalostiach, aktuálnych postojoch a skúsenostiach reumatológov,  endokrinológov, a osteológov s biosimilármi.Dotazník je anonymný a výsledky budú použité výhradne v súhrnnej podobe za celé vyhodnocované teritórium",
     questions: [
@@ -62,7 +62,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "II. VEDOMOSTI A POVEDOMIE O BIOSIMILÁRNYCH LIEKOCH",
+    section: "II. VEDOMOSTI A POVEDOMIE O BIOSIMILÁRNYCH LIEKOCH.",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašom povedomí o biosimilárnych liekoch, ktoré  sú biologickými liekmi vysoko podobnými s originálnym referenčným liekom. Prešli prísnym procesom schvaľovania Európskou liekovou agentúrou (EMA), ktorý potvrdzuje ich kvalitu, účinnosť a bezpečnosť. Ich vývoj je postavený na dôkaze farmakokinetickej a farmakodynamickej podobnosti s originálnym liekom, ktorý sa dokazuje v klinických štúdiách fázy 1, a následne sa potvrdzuje v klinickej štúdii fázy 3, že účinnosť a bezpečnosť je podobná originálnemu biologiku",
     questions: [
@@ -71,25 +71,27 @@ const questionnaire = [
         text: "Do akej miery sa v súčasnosti  považujete za dostatočne informovaného o biosimilárnych liekoch?",
         type: "likert",
         options: [
-          "Úplne nesúhlasím",
-          "Nesúhlasím",
-          "Skôr nesúhlasím",
+          "Vôbec nie",
+          "Skôr nie",
           "Neutrálne",
-          "Skôr súhlasím",
+          "Skôr áno",
+          "Veľmi dobre",
         ],
         coding: [1, 2, 3, 4, 5],
       },
       {
         id: "q2_communication_form",
-        text: "Aká forma komunikácie by Vám pomohla získať dôveru v tieto lieky?",
+        text: "Aké sú v súčasnosti Vaše hlavné zdroje informácií o  biosimilárnych liekoch? ",
         type: "multi",
         options: [
           "Kolegovia",
           "Konferencie",
           "Farmaceutické spoločnosti",
+          "Odborná literatúra",
+          "Online",
           "Iné",
         ],
-        coding: [1, 2, 3, 4],
+        coding: [1, 2, 3, 4, 5, 6],
       },
       {
         id: "q3_better_orientation",
@@ -104,7 +106,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "III. Vnímanie účinnosti a bezpečnosti",
+    section: "III. VNÍMANIE ÚČINNOSTI A BEZPEČNOSTI",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašom vnímaní účinnosti a bezpečnosti biosimilárnych liekoch, ktoré sú porovnateľné s originálnymi liekmi. Tieto lieky sú dôkladne testované v klinických štúdiách a podliehajú rovnakej kontrole bezpečnosti ako lieky originálne.",
     questions: [
@@ -113,10 +115,10 @@ const questionnaire = [
         text: "Ako celkovo hodnotíte účinnosť biosimilárnych liekov v porovnaní s originálnymi liekmi?",
         type: "likert",
         options: [
-          "Úplne nesúhlasím",
-          "Nesúhlasím",
-          "Skôr nesúhlasím",
-          "Neutrálne",
+          "Nižšia",
+          "Porovnateľná",
+          "Vyššia",
+          "Neviem posúdiť",
         ],
         coding: [1, 2, 3, 4],
       },
@@ -125,10 +127,10 @@ const questionnaire = [
         text: "Ako hodnotíte bezpečnosť biosimilárnych liekov  v porovnaní s originálmi??",
         type: "likert",
         options: [
-          "Úplne nesúhlasím",
-          "Nesúhlasím",
-          "Skôr nesúhlasím",
-          "Neutrálne",
+         "Nižšia",
+          "Porovnateľná",
+          "Vyššia",
+          "Neviem posúdiť",
         ],
         coding: [1, 2, 3, 4],
       },
@@ -137,12 +139,13 @@ const questionnaire = [
         text: "Ako hodnotíte riziko nežiaducich účinkov u biosimilárnych liekov v porovnaní s originálmi?",
         type: "likert",
         options: [
-          "Úplne nesúhlasím",
-          "Nesúhlasím",
-          "Skôr nesúhlasím",
-          "Neutrálne",
+          "Výrazne vyššie",
+          "Mierne vyššie",
+          "Rovnaké",
+          "Mierne nižšie",
+          "Výrazne nižšie"
         ],
-        coding: [1, 2, 3, 4],
+        coding: [1, 2, 3, 4, 5],
       },
       {
         id: "q8_safety_support",
@@ -152,7 +155,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "IV. Skúsenosti s používaním",
+    section: "IV. SKÚSENOSTI S POUŽÍVANÍM",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašich skúsenostiach s biosimilárnymi liekmi v praxi. V klinickej praxi je k dispozícii už viac ako 100 rôznych biosimilárnych liekov a začali sa používať v EU už v roku 2006. Posledných 20 rokov používania v klinickej praxi potvrdzuje ich efektívnosť a bezpečnosť.",
     questions: [
@@ -178,10 +181,10 @@ const questionnaire = [
         text: "Ako často predpisujete biosimilárny liek namiesto originálu?",
         type: "likert",
         options: [
-          "Úplne nesúhlasím",
-          "Nesúhlasím",
-          "Skôr nesúhlasím",
-          "Neutrálne",
+          "Vždy",
+          "Často",
+          "Zriedka",
+          "Nikdy",
         ],
         coding: [1, 2, 3, 4],
       },
@@ -203,7 +206,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "V. Switching (prechod z originálu na biosimilárny liek)",
+    section: "V. SWITCHING (PRECHOD Z ORIGINÁLU NA BIOSIMILÁRNY LIEK)",
     introduction:
       "V tejto časti sa preto chceme dozvedieť o Vašich osobných skúsenostiach pri prechode z originálneho lieku na biosimilárny liek a Vašej následnej komunikácii s pacientom. Doterajšie dáta potvrdzujú, že switch nemá negatívny vplyv na účinnosť ani bezpečnosť liečby..",
     questions: [
@@ -367,7 +370,7 @@ const questionnaire = [
     ],
   },
    {
-    section: "VIII Regulácia a schvaľovanie",
+    section: "VIII. REGULÁCIA A SCHVAĽOVANIE",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašom povedomí o regulácií a schvaľovaní biosimilárnych liekov. Každý biosimilárny liek musí preukázať farmaceutickú kvalitu, biologickú podobnosť a klinickú účinnosť. EMA aj ŠÚKL dôsledne hodnotia každý liek pred uvedením na trh. Zároveň EMA povoľuje tzv. extrapoláciu indikácií – ak biosimilárny liek preukáže porovnateľnú účinnosť a bezpečnosť v jednej kľúčovej indikácii, môže byť schválený aj pre ostatné indikácie originálneho lieku. Tento proces je prísne regulovaný a opiera sa o kompletný súbor dát o podobnosti.",
     questions: [
@@ -404,7 +407,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "IX. Ekonomické a dostupnostné faktory",
+    section: "IX. EKONOMICKÉ A DOSTUPNOSTNÉ FAKTORY",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašom povedomí o ekonomických a dostupnostných faktoroch súvisiacich s používaním biosimilárnych liekov. Biosimilárne lieky pri vstupe na trh znižujú cenu liečby približne o 25 %, čím znižujú celkové náklady zdravotného systému a umožňujú širší prístup pacientov k liečbe. Ich využívanie zároveň podporuje dlhodobú udržateľnosť zdravotnej starostlivosti.",
     questions: [
@@ -429,7 +432,7 @@ const questionnaire = [
     ],
   },
   {
-    section: "X. Edukácia a podpora",
+    section: "X. EDUKÁCIA A PODPORA",
     introduction:
       "V tejto časti sa chceme dozvedieť o Vašich postojoch k edukácii a odbornej podpore zo strany výrobcov liekov. Veríme, že systematické vzdelávanie lekárov, dostupnosť vedeckých dát a zdieľanie klinických skúseností sú kľúčové pre posilnenie dôvery v biosimilárne lieky a ich racionálne využívanie v klinickej praxi.",
     questions: [
@@ -462,16 +465,16 @@ const questionnaire = [
         type: "open",
       },
     ],
-  },
+  },  
   {
-    section: "XI. Odporúčania a návrhy",
+    section: "XI. ODPORÚČANIA A NÁVRHY",
     introduction:
       "V tejto časti sa chceme dozvedieť Vaše návrhy a odporúčania, ktoré by nám pomohli formovať budúce stratégie komunikácie, edukácie a odbornej podpory v oblasti informovanosti o biosimilárnych liekoch.",
     questions: [
       {  
         id: "q_v5_1",
         text: "Aké kroky by mali výrobcovia alebo odborné spoločnosti podniknúť na zvýšenie kvality informovanosti o biosimilárnych liekoch?",
-        type: "open",
+        type: "open",     
       },
     ],
   },
@@ -493,6 +496,7 @@ export default function QuestionnairePage() {
   const [missingData, setMissingData] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [checkingAccess, setCheckingAccess] = useState(true);
+  const [showInstructions, setShowInstructions] = useState(true);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("contractorData");
@@ -760,7 +764,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
           }}
         >
           <p className="mb-6">
-            Chýbajú osobné údaje. Prosím, vyplňte najskôr osobné údaje.
+            Chýbajú osobné údaje. Prosím, „v“yplňte najskôr osobné údaje.
           </p>
           <a
             href="/personal-data"
@@ -778,6 +782,150 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
             PREJSŤ NA OSOBNÉ ÚDAJE
           </a>
         </div>
+      ) : showInstructions ? (
+        <>
+          <div
+            className="mb-16"
+            style={{ paddingBottom: "16px", borderBottom: "1px solid #e5e7eb" }}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div
+                style={{
+                  color: "#999999",
+                  fontSize: "13px",
+                  fontFamily: "Helvetica, Arial, sans-serif",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                ID: {contractId}
+              </div>
+              <div className="flex gap-6">
+                <div
+                  style={{
+                    color: "#666666",
+                    fontSize: "13px",
+                    fontFamily: "Helvetica, Arial, sans-serif",
+                  }}
+                >
+                  {respondent?.name}
+                </div>
+                <div
+                  style={{
+                    color: "#666666",
+                    fontSize: "13px",
+                    fontFamily: "Helvetica, Arial, sans-serif",
+                  }}
+                >
+                  {respondent?.email}
+                </div>
+              </div>
+            </div>
+          </div>
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
+            style={{
+              fontFamily: "Helvetica, Arial, sans-serif",
+              color: "#000000",
+              letterSpacing: "-0.02em",
+              lineHeight: "1.1"
+            }}
+          >
+            Inštrukcie k vypĺňaniu
+          </h1>
+          <p
+            className="text-base sm:text-lg mb-12 sm:mb-20"
+            style={{
+              fontFamily: "Helvetica, Arial, sans-serif",
+              color: "#666666",
+            }}
+          >
+            MedInsights 2026
+          </p>
+          <div className="mb-16">
+            <h2
+              className="text-xl sm:text-2xl font-semibold mb-6"
+              style={{
+                fontFamily: "Helvetica, Arial, sans-serif",
+                color: "#000000",
+              }}
+            >
+              Inštrukcie k vypĺňaniu
+            </h2>
+            <ul
+              style={{
+                fontFamily: "Helvetica, Arial, sans-serif",
+                color: "#666666",
+                fontSize: "16px",
+                lineHeight: "1.8",
+              }}
+            >
+              <li className="mb-4">
+                • Dotazník je možné vyplniť naraz alebo v niekoľkých krokoch.
+              </li>
+              <li className="mb-4">
+                • Pri škálach prosíme označiť vždy jednu odpoveď, ak nie je
+                uvedené inak.
+              </li>
+              <li className="mb-4">
+                • Pri otvorených otázkach môžete uviesť ľubovoľne dlhú odpoveď.
+              </li>
+              <li className="mb-4">
+                • Po odoslaní dát získate potvrdenie o účasti.
+              </li>
+              <li className="mb-6">
+                • V prípade otázok nás kontaktujte na podpora@medinsights.sk
+              </li>
+            </ul>
+          </div>
+          <div className="mb-16">
+            <h2
+              className="text-xl sm:text-2xl font-semibold mb-6"
+              style={{
+                fontFamily: "Helvetica, Arial, sans-serif",
+                color: "#000000",
+              }}
+            >
+              Dôležité termíny
+            </h2>
+            <ul
+              style={{
+                fontFamily: "Helvetica, Arial, sans-serif",
+                color: "#666666",
+                fontSize: "16px",
+                lineHeight: "1.8",
+              }}
+            >
+              <li className="mb-4">
+                • Trvanie prieskumu: 15. 1. 2026 – 15. 02. 2026
+              </li>
+              <li className="mb-6">
+                • Dotazník je potrebné vyplniť v rámci daného obdobia.
+              </li>
+            </ul>
+          </div>
+          <button
+            onClick={() => setShowInstructions(false)}
+            className="w-full py-4 px-6 font-medium transition-all duration-300"
+            style={{
+              backgroundColor: "#000000",
+              color: "#ffffff",
+              fontFamily: "Helvetica, Arial, sans-serif",
+              borderRadius: "50px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "16px",
+              letterSpacing: "0.05em",
+            }}
+            onMouseEnter={(e) => {
+              (e.target as HTMLElement).style.opacity = "0.9";
+            }}
+            onMouseLeave={(e) => {
+              (e.target as HTMLElement).style.opacity = "1";
+            }}
+          >
+            ZAČAŤ DOTAZNÍK
+          </button>
+        </>
       ) : (
         <>
           <div
@@ -834,7 +982,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
               color: "#666666",
             }}
           >
-            MedInsights 2025
+            MedInsights 2026
           </p>
           <div className="mb-20">
             <div className="flex justify-between items-center mb-4">
@@ -897,7 +1045,6 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
                     letterSpacing: "0.1em",
                   }}
                 >
-                  SEKCIA {sectionIndex + 1}
                 </div>
                 <h2
                   className="text-2xl sm:text-3xl font-light"

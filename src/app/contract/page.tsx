@@ -43,7 +43,7 @@ DIČ alebo rodné číslo: {taxId}
 
 Článok I.
 Dielo
-1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom „MedInsights 2025“ organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len „dielo“).
+1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom „MedInsights 2026" organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len „dielo").
 2. Objednávateľ sa zaväzuje zaplatiť zhotoviteľovi odmenu za dielo uvedenú v čl. II.
 
 Článok II.
@@ -234,7 +234,7 @@ export default function ContractPage() {
             new Paragraph({ children: [run("")] }),
             new Paragraph({ children: [run("Článok I.", { bold: true })], alignment: "center" }),
             new Paragraph({ children: [run("Dielo", { bold: true })], alignment: "center" }),
-            new Paragraph({ children: [run("1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom „MedInsights 2025“ organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len „dielo“).")], spacing: { line: 720 }, }),
+            new Paragraph({ children: [run("1. Zhotoviteľ sa touto zmluvou zaväzuje zapojiť v termíne od 15. 12. 2025 do 15.1. 2026 do marketingového prieskumu s názvom 'MedInsights 2026' organizovaného objednávateľom a za tým účelom sa zaväzuje vyplniť pre objednávateľa digitálny formulár/dotazník, ktoré mu objednávateľ sprístupní vo webovom rozhraní na doméne www.medinsights.sk. Zhotoviteľ sa zaväzuje vyplniť digitálny formulár/dotazník podľa metodiky určenej objednávateľom a digitálne ho odovzdať (digitálne odoslať) objednávateľovi najneskôr do 15. 1. 2026 (ďalej len 'dielo'.)")] , spacing: { line: 720 }, }),
             new Paragraph({ children: [run("2. Objednávateľ sa zaväzuje zaplatiť zhotoviteľovi odmenu za dielo uvedenú v čl. II.")], spacing: { line: 720 }, }),
             new Paragraph({ children: [run("Článok II.", { bold: true })], alignment: "center" }),
             new Paragraph({ children: [run("Odmena", { bold: true })], alignment: "center" }),
@@ -280,10 +280,6 @@ export default function ContractPage() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     setDownloading(false);
-  }
-
-  function handleGoToSurvey() {
-    window.location.href = '/questionnaire';
   }
 
   return (
@@ -348,16 +344,7 @@ export default function ContractPage() {
           onClick={handleApproveContract}
           disabled={!agreed}
         >
-          SCHVÁLIŤ
-        </button>
-        <button
-          className="flex-1 py-4 font-medium transition-all duration-300"
-          style={{ backgroundColor: 'transparent', color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', border: '2px solid #000000', letterSpacing: '0.05em', borderRadius: '50px' }}
-          onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#000000'; (e.target as HTMLElement).style.color = '#ffffff'; }}
-          onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'transparent'; (e.target as HTMLElement).style.color = '#000000'; }}
-          onClick={handleGoToSurvey}
-        >
-          PREJSŤ DO PRIESKUMU
+          SCHVÁLIŤ ZMLUVU
         </button>
       </div>
     </div>

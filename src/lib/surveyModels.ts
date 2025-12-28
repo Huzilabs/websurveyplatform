@@ -1,4 +1,4 @@
-// Survey data models for MedInsights 2025
+// Survey data models for MedInsights 2026
 export type SurveyQuestion = {
   id: string;
   type: 'likert_1_7' | 'Áno_Nie_Neviem' | 'slider_1_10' | 'open_text';
