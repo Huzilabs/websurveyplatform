@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import { supabase } from "../../lib/supabaseClient";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // This would be passed as props or context in a real app
 const contractorData = {
@@ -283,12 +285,15 @@ export default function ContractPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <div className="mb-12 p-8" style={{ backgroundColor: '#fafafa' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Header />
+      <main className="flex-grow">
+        <div className="max-w-4xl mx-auto px-6 py-16">
+          <div className="mb-12 p-8" style={{ backgroundColor: '#fafafa' }}>
         <div className="text-sm mb-2" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}><span className="font-medium">Meno:</span> {contractor.name}</div>
         <div className="text-sm" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}><span className="font-medium">Email:</span> {contractor.email}</div>
       </div>
-      <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '-0.02em' }}>Zmluva o dielo</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#000000', fontFamily: 'Helvetica, Arial, sans-serif', letterSpacing: '-0.02em' }}>Zmluva o dielo </h1>
       <div className="overflow-y-scroll whitespace-pre-wrap p-8 text-sm mb-12 leading-relaxed" style={{ backgroundColor: '#fafafa', border: '1px solid #e0e0e0', color: '#333333', fontFamily: 'Helvetica, Arial, sans-serif', maxHeight: '60vh' }}>
         {filledContract}
       </div>
@@ -347,6 +352,9 @@ export default function ContractPage() {
           SCHVÁLIŤ ZMLUVU
         </button>
       </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }

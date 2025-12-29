@@ -1,7 +1,25 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Footer({ variant }: { variant?: "landing" }) {
+export default function Footer({ variant }: { variant?: "landing" | "public" }) {
+  // For public variant (non-invited visitors), show only copyright
+  if (variant === "public") {
+    return (
+      <footer className="w-full" style={{ 
+        backgroundColor: '#fafafa', 
+        borderTop: '1px solid #e5e7eb',
+        fontFamily: 'Helvetica, Arial, sans-serif'
+      }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 py-8 sm:py-12">
+          <div className="text-center">
+            <div className="text-sm" style={{ color: '#666666', fontFamily: 'Helvetica, Arial, sans-serif' }}>© 2026 KOLLÁR & THIRY s.r.o.</div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  // Standard footer with all links for registered participants
   return (
     <footer className="w-full mt-auto" style={{ 
       backgroundColor: '#fafafa', 

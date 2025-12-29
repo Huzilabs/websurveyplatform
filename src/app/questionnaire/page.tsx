@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { supabase } from "../../lib/supabaseClient";
 
 // Complete questionnaire with all 29 biosimilar questions
@@ -734,14 +736,17 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
   };
 
   return (
-    <div
-      className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20"
-      style={{
-        backgroundColor: "#ffffff",
-        fontFamily: "Helvetica, Arial, sans-serif",
-        color: "#000000",
-      }}
-    >
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Header />
+      <main className="flex-grow">
+        <div
+          className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20"
+          style={{
+            backgroundColor: "#ffffff",
+            fontFamily: "Helvetica, Arial, sans-serif",
+            color: "#000000",
+          }}
+        >
       {!isLoaded || checkingAccess ? (
         <div
           className="text-center py-20"
@@ -1511,6 +1516,9 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
           )}
         </>
       )}
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }

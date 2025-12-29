@@ -1,5 +1,7 @@
 
 "use client";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import PersonalDataForm from "../../components/PersonalDataForm";
 
 export default function PersonalDataPage() {
@@ -10,10 +12,14 @@ export default function PersonalDataPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center py-12 sm:py-16" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <main className="flex flex-col items-center w-full max-w-4xl px-4 sm:px-6">
-        <PersonalDataForm onSubmit={handleSubmit} />
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Header />
+      <main className="flex-grow flex items-center justify-center py-12 sm:py-16 w-full">
+        <div className="flex flex-col items-center w-full max-w-4xl px-4 sm:px-6">
+          <PersonalDataForm onSubmit={handleSubmit} />
+        </div>
       </main>
+      <Footer />
     </div>
   );
 }

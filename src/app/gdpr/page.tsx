@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Footer from "../../components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function GDPRPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <Header />
       <div className="flex-grow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="mb-12 pb-6" style={{ borderBottom: '1px solid #e5e7eb' }}>

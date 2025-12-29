@@ -52,9 +52,7 @@ export default function RootLayout({
       >
         <SessionTimeout />
         <LanguageProvider>
-          <Header />
           {children}
-          <Footer />
         </LanguageProvider>
       </body>
     </html>
