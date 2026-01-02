@@ -6,6 +6,21 @@ import { supabase } from "../../lib/supabaseClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Dynamic import for toastr to work in Next.js
+let toastr: any = null;
+
+async function initToastr() {
+  if (!toastr) {
+    toastr = (await import("toastr")).default;
+    toastr.options = {
+      positionClass: "toast-top-right",
+      timeOut: 3000,
+      extendedTimeOut: 1000,
+    };
+  }
+  return toastr;
+}
+
 // This would be passed as props or context in a real app
 const contractorData = {
   name: "Meno a priezvisko",
@@ -165,9 +180,12 @@ export default function ContractPage() {
       }
       
       console.log('Contract approved successfully:', data);
-      alert('Zmluva bola schválená!');
-      // Navigate to questionnaire
-      window.location.href = '/questionnaire';
+      const toast = await initToastr();
+      toast.success('Zmluva bola schválená!');
+      // Navigate to questionnaire after showing toastr
+      setTimeout(() => {
+        window.location.href = '/questionnaire';
+      }, 2000);
     } catch (error) {
       console.error('Unexpected error approving contract:', error);
       alert(`Neočakávaná chyba: ${error instanceof Error ? error.message : 'Neznáma chyba'}`);

@@ -5,7 +5,8 @@ export default function SimpleFooter() {
     <footer className="w-full" style={{ 
       backgroundColor: '#fafafa', 
       borderTop: '1px solid #e5e7eb',
-      fontFamily: 'Helvetica, Arial, sans-serif'
+      fontFamily: 'Helvetica, Arial, sans-serif',
+      marginTop:'50px'
     }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-8 sm:py-12">
         <div className="text-center">
