@@ -32,13 +32,7 @@ export default function Home() {
             }}>
               Vitajte!
             </h1>
-            <p className="text-xl sm:text-2xl mb-12" style={{ 
-              fontFamily: 'Helvetica, Arial, sans-serif',
-              color: '#666666',
-              fontWeight: '300'
-            }}>
-              Váš názor formuje budúcnosť zdravotnej starostlivosti
-            </p>
+           
           </div>
 
           {/* Why Participate Section */}
@@ -139,9 +133,7 @@ export default function Home() {
                 Začať teraz
               </button>
             </Link>
-            <p className="mt-6 text-sm" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: '#999999', letterSpacing: '0.05em' }}>
-              ANONYMNÝ • BEZPEČNÝ • ODMENENÝ
-            </p>
+           
           </div>
           
         </div>

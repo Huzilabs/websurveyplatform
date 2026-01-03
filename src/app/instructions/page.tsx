@@ -7,7 +7,6 @@ export default function InstructionsPage() {
   const router = useRouter();
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-6 bg-white rounded shadow mt-4 sm:mt-8">
-      <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Inštrukcie k vypĺňaniu</h1>
       <ul className="list-disc pl-4 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
         <li>Dotazník je možné vyplniť naraz alebo v niekoľkých krokoch.</li>
         <li>Pri škálach prosíme označiť vždy jednu odpoveď, ak nie je uvedené inak.</li>

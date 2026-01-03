@@ -64,9 +64,9 @@ const questionnaire = [
     ],
   },
   {
-    section: "II. VEDOMOSTI A POVEDOMIE O BIOSIMILÁRNYCH LIEKOCH.",
+    section: "II. VEDOMOSTI A POVEDOMIE O BIOSIMILÁRNYCH LIEKOCH",
     introduction:
-      "V tejto časti sa chceme dozvedieť o Vašom povedomí o biosimilárnych liekoch, ktoré  sú biologickými liekmi vysoko podobnými s originálnym referenčným liekom. Prešli prísnym procesom schvaľovania Európskou liekovou agentúrou (EMA), ktorý potvrdzuje ich kvalitu, účinnosť a bezpečnosť. Ich vývoj je postavený na dôkaze farmakokinetickej a farmakodynamickej podobnosti s originálnym liekom, ktorý sa dokazuje v klinických štúdiách fázy 1, a následne sa potvrdzuje v klinickej štúdii fázy 3, že účinnosť a bezpečnosť je podobná originálnemu biologiku",
+      "V tejto časti sa chceme dozvedieť o Vašom povedomí o biosimilárnych liekoch, ktoré  sú biologickými liekmi vysoko podobnými s originálnym referenčným liekom. Prešli prísnym procesom schvaľovania Európskou liekovou agentúrou (EMA), ktorý potvrdzuje ich kvalitu, účinnosť a bezpečnosť. Ich vývoj je postavený na dôkaze farmakokinetickej a farmakodynamickej podobnosti s originálnym liekom, ktorý sa dokazuje v klinických štúdiách fázy 1, a následne sa potvrdzuje v klinickej štúdii fázy 3, že účinnosť a bezpečnosť je podobná originálnemu biologiku.",
     questions: [
       {
         id: "q1_trust_expert",
@@ -126,7 +126,7 @@ const questionnaire = [
       },
       {
         id: "q6_safety_rating",
-        text: "Ako hodnotíte bezpečnosť biosimilárnych liekov  v porovnaní s originálmi??",
+        text: "Ako hodnotíte bezpečnosť biosimilárnych liekov  v porovnaní s originálmi?",
         type: "likert",
         options: [
          "Nižšia",
@@ -210,7 +210,7 @@ const questionnaire = [
   {
     section: "V. SWITCHING (PRECHOD Z ORIGINÁLU NA BIOSIMILÁRNY LIEK)",
     introduction:
-      "V tejto časti sa preto chceme dozvedieť o Vašich osobných skúsenostiach pri prechode z originálneho lieku na biosimilárny liek a Vašej následnej komunikácii s pacientom. Doterajšie dáta potvrdzujú, že switch nemá negatívny vplyv na účinnosť ani bezpečnosť liečby..",
+      "V tejto časti sa preto chceme dozvedieť o Vašich osobných skúsenostiach pri prechode z originálneho lieku na biosimilárny liek a Vašej následnej komunikácii s pacientom. Doterajšie dáta potvrdzujú, že switch nemá negatívny vplyv na účinnosť ani bezpečnosť liečby.",
     questions: [
       {
         id: "q14_patient_transition",
@@ -221,7 +221,7 @@ const questionnaire = [
           "Negatívne,",
           "Neutrálne,",
           "Pozitívne,",
-          "Veľmi pozitívne,",
+          "Veľmi pozitívne",
         ],
         coding: [1, 2, 3, 4, 5],
       },
@@ -826,17 +826,7 @@ const mapAnswersToColumns = (answers: Record<string, string | string[]>) => {
               </div>
             </div>
           </div>
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
-            style={{
-              fontFamily: "Helvetica, Arial, sans-serif",
-              color: "#000000",
-              letterSpacing: "-0.02em",
-              lineHeight: "1.1"
-            }}
-          >
-            Inštrukcie k vypĺňaniu
-          </h1>
+          
           <p
             className="text-base sm:text-lg mb-12 sm:mb-20"
             style={{
